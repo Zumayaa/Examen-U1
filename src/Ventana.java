@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Ventana extends JFrame {
+public class Ventana extends JFrame {//hola
     public JPanel panel = null;
     private String actual = "cargaPantalla";
     public Ventana(){
