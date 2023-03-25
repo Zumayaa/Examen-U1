@@ -3,11 +3,17 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Ventana extends JFrame {//hola
     public JPanel panel = null;
-    private String actual = "cargaPantalla";
+    
+    private String anterior = "cargaPantalla";
+    private String actual = "login";
     public Ventana(){
+    	
         this.setVisible(true);
         this.setSize(600,700);
         this.setTitle("Datos generales");
@@ -16,17 +22,38 @@ public class Ventana extends JFrame {//hola
         this.getContentPane().setBackground(Color.decode("#CAE9DA"));
         this.setLayout(null);
 
-        panel = listaUsuarios();
+        limpiarVentana();
 
         this.add(panel);
 
         this.repaint();
         this.revalidate();
-
-
     }
+    
+    public void limpiarVentana(){
 
+        if(panel!= null) {
+            this.remove(panel);
+        }
 
+        if(actual.equals("login")){
+            panel = login();
+
+            this.add(panel);
+
+            this.repaint();
+            this.revalidate();
+        }
+
+        if(actual.equals("menu")){
+            panel = menupanel();
+
+            this.add(panel);
+
+            this.repaint();
+            this.revalidate();
+        }
+    }
 
     public JPanel cargaPantalla(){
         JPanel cargaPanel = new JPanel();
@@ -50,6 +77,8 @@ public class Ventana extends JFrame {//hola
 
 
     public JPanel menupanel(){
+    	anterior = actual;
+        actual = "menu";
 
         JPanel menu = new JPanel();
         menu.setSize(350,24);
@@ -137,11 +166,10 @@ public class Ventana extends JFrame {//hola
     }
 
 
-
-
-
-
     public JPanel login(){
+    	anterior = actual;
+        actual = "login";
+        
         JPanel loginPanel = new JPanel();
         loginPanel.setSize(600, 700);
         loginPanel.setLocation(0, 0);
@@ -181,10 +209,10 @@ public class Ventana extends JFrame {//hola
         pass.setForeground(Color.white);
         loginPanel.add(pass);
 
-        JPasswordField contraseña = new JPasswordField();
-        contraseña.setSize(250,40);
-        contraseña.setLocation(125,240);
-        loginPanel.add(contraseña);
+        JPasswordField contrasena = new JPasswordField();
+        contrasena.setSize(250,40);
+        contrasena.setLocation(125,240);
+        loginPanel.add(contrasena);
 
         JButton acceder = new JButton("Acceder");
         acceder.setSize(150,30);
@@ -197,11 +225,58 @@ public class Ventana extends JFrame {//hola
         registrar.setLocation(175,370);
         registrar.setBackground(Color.decode("#0078FF"));
         loginPanel.add(registrar);
+        
+        acceder.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String email = username.getText();
+                String pwd = new String (contrasena.getPassword());
+
+                BufferedReader reader;
+                Boolean flag = false;
+
+                try{
+                    FileReader file = new FileReader("users.txt");
+                    reader = new BufferedReader(file);
+                    String line = reader.readLine();
+
+                    while(line != null) {
+                        String data[] = line.split(",");
+                        System.out.println(data[2]);
+                        if(email.equals(data[2])) {
+                            if(pwd.equals(data[3])) {
+                                flag = true;
+                            }
+                        }
+
+                        line = reader.readLine();
+                    }
+
+                    if(flag) {
+                        anterior = actual;
+                        actual = "menu";
+                        limpiarVentana();
+
+                        repaint();
+                        revalidate();
+
+                    }else
+                        JOptionPane.showMessageDialog(null,"NO entraste pa","Dificultades", JOptionPane.INFORMATION_MESSAGE);
+                }catch (IOException e1){
+                    e1.printStackTrace();
+                }
+            }
+        	
+        });
 
         return loginPanel;
     }
 
     public JPanel miCuenta(){
+    	anterior = actual;
+        actual = "micuenta";
+        
         JPanel miCuenta = new JPanel();
         miCuenta.setSize(600, 700);
         miCuenta.setLocation(0, 0);
@@ -285,6 +360,9 @@ public class Ventana extends JFrame {//hola
     }
 
     public JPanel listaUsuarios(){
+    	anterior = actual;
+        actual = "listaUsers";
+        
         JPanel listaUsuarios = new JPanel();
         listaUsuarios.setSize(600, 700);
         listaUsuarios.setLocation(0, 0);
