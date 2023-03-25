@@ -151,9 +151,6 @@ public class Ventana extends JFrame {//hola
                 instrucciones.add(comocrea);
                 instrucciones.add(instruccioness);
 
-
-
-
                 repaint();
                 revalidate();
 
@@ -262,7 +259,7 @@ public class Ventana extends JFrame {//hola
                         revalidate();
 
                     }else
-                        JOptionPane.showMessageDialog(null,"NO entraste pa","Dificultades", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null,"No puede entrar","ERROR", JOptionPane.INFORMATION_MESSAGE);
                 }catch (IOException e1){
                     e1.printStackTrace();
                 }
