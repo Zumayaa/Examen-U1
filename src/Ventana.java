@@ -115,6 +115,22 @@ public class Ventana extends JFrame {//hola
         instrucciones.setSize(350, 250);
         instrucciones.setBackground(new Color(102, 255, 204));
         instrucciones.setLocation(20, 60);
+        
+        cerrasesi.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int op = JOptionPane.showConfirmDialog(null, "¿Desea cerrar sesión?", "Cerrar sesión",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+				
+				if(op==JOptionPane.YES_OPTION) {
+					anterior = actual;
+                    actual = "login";
+                    limpiarVentana();
+				}
+				
+			}
+        	
+        });
 
         comocrear.addActionListener(new ActionListener() {
 
@@ -228,7 +244,7 @@ public class Ventana extends JFrame {//hola
                 Boolean flag = false;
 
                 try{
-                    FileReader file = new FileReader("users.txt");
+                    FileReader file = new FileReader("src\\users.txt");
                     reader = new BufferedReader(file);
                     String line = reader.readLine();
 
