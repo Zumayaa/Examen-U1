@@ -53,6 +53,24 @@ public class Ventana extends JFrame {//hola
             this.repaint();
             this.revalidate();
         }
+        
+        if(actual.equals("micuenta")){
+            panel = miCuenta();
+
+            this.add(panel);
+
+            this.repaint();
+            this.revalidate();
+        }
+        
+        if(actual.equals("listaUsers")){
+            panel = listaUsuarios();
+
+            this.add(panel);
+
+            this.repaint();
+            this.revalidate();
+        }
     }
 
     public JPanel cargaPantalla(){
@@ -72,10 +90,8 @@ public class Ventana extends JFrame {//hola
         this.add(cargaPanel);
         return cargaPanel;
     }
-
-
-
-
+    
+    //MENU PRINCIPAL---------------------------------------------------------------------
     public JPanel menupanel(){
     	anterior = actual;
         actual = "menu";
@@ -126,7 +142,34 @@ public class Ventana extends JFrame {//hola
 					anterior = actual;
                     actual = "login";
                     limpiarVentana();
+                    
+                    repaint();
+                    revalidate();
 				}
+				
+			}
+        	
+        });
+        
+        micuenta.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				anterior = actual;
+                actual = "micuenta";
+                limpiarVentana();
+				
+			}
+        	
+        });
+        
+        listausu.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				anterior = actual;
+                actual = "listaUsers";
+                limpiarVentana();
 				
 			}
         	
@@ -169,9 +212,6 @@ public class Ventana extends JFrame {//hola
 
                 repaint();
                 revalidate();
-
-
-
             }
         });
         return menu;
@@ -350,18 +390,32 @@ public class Ventana extends JFrame {//hola
         contraseñaConfirmar.setLocation(125,380);
         miCuenta.add(contraseñaConfirmar);
 
-        JCheckBox terminosConfirm = new JCheckBox("Acepto los términos y condiciones, vendo mi alma al diablo.");
-        terminosConfirm.setSize(450,20);
-        terminosConfirm.setLocation(60,450);
-        terminosConfirm.setOpaque(false);
-        terminosConfirm.setForeground(Color.white);
-        miCuenta.add(terminosConfirm);
-
-        JButton accederRegistrar = new JButton("Registrarse");
+        JButton accederRegistrar = new JButton("Actualizar datos");
         accederRegistrar.setSize(150,30);
         accederRegistrar.setLocation(175,500);
         accederRegistrar.setBackground(Color.decode("#ecd47f"));
         miCuenta.add(accederRegistrar);
+        
+        JButton cancelar = new JButton("Cancelar");
+        cancelar.setSize(150,30);
+        cancelar.setLocation(100,500);
+        cancelar.setBackground(Color.decode("#E32636"));
+        miCuenta.add(cancelar);
+        
+        cancelar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				anterior = actual;
+                actual = "menu";
+                limpiarVentana();
+
+                repaint();
+                revalidate();
+				
+			}
+        	
+        });
 
         return miCuenta;
     }
