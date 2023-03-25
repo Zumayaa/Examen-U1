@@ -26,6 +26,8 @@ public class Ventana extends JFrame {//hola
 
     }
 
+
+
     public JPanel cargaPantalla(){
         JPanel cargaPanel = new JPanel();
         cargaPanel.setSize(600, 700);
@@ -43,6 +45,101 @@ public class Ventana extends JFrame {//hola
         this.add(cargaPanel);
         return cargaPanel;
     }
+
+
+
+
+    public JPanel menupanel(){
+
+        JPanel menu = new JPanel();
+        menu.setSize(350,24);
+        menu.setLocation(30,20);
+
+
+        this.add(menu);
+
+        JMenuBar menuBar = new JMenuBar();
+        JMenu cuenta = new JMenu("Cuenta");
+        JMenu usuarios = new JMenu("Usuarios");
+        JMenu ayuda = new JMenu("Ayuda");
+        menuBar.add(cuenta);
+        menuBar.add(usuarios);
+        menuBar.add(ayuda);
+        menu.setLayout(new BorderLayout());
+        menu.add(menuBar,BorderLayout.NORTH);
+
+        JMenuItem micuenta = new JMenuItem("Mi cuenta");
+        JMenuItem cerrasesi = new JMenuItem("Cerrar sesión");
+        cuenta.add(cerrasesi);
+        cuenta.add(micuenta);
+
+        JMenuItem listausu = new JMenuItem("Lista de usuarios");
+        JMenuItem crearusu = new JMenuItem("Crear Usuario");
+        usuarios.add(listausu);
+        usuarios.add(crearusu);
+
+        JMenuItem comocrear = new JMenuItem("¿Como crear usuarios?");
+        ayuda.add(comocrear);
+
+
+        JPanel instrucciones = new JPanel();
+        instrucciones.setSize(350, 250);
+        instrucciones.setBackground(new Color(102, 255, 204));
+        instrucciones.setLocation(20, 60);
+
+        comocrear.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+
+                JLabel comocrea = new JLabel("¿Como crear un usuario?");
+                comocrea.setFont(new Font("Arial", Font.BOLD, 18));
+
+                //   comocrea.setLocation(50,0);
+                JTextArea instruccioness = new JTextArea("1.Hacer click en la opción 'Usuarios' en\n" +
+                        "el menú superior.\n"+
+                        "2.Hacer click en la opción 'Crear Usuario'\n"+
+                        "en el menú desplegado.\n"+
+                        "3.Llenar los campos solicitados\n"+
+                        "4.Escribi una pequeña descripción de ti\n"+
+                        "5.Seleccionar tu comida favorita.\n"+
+                        "6.Seleccionar tu color favorito.\n"+
+                        "7.Hacer click en el botón 'Crear Usuario'\n"+
+                        "8.Listo, el usuario se ha creado.");
+                instruccioness.setEditable(false);
+
+                //    instruccioness.setLocation(0,20);
+                instruccioness.setBackground(new Color(102, 255, 204));
+                instruccioness.setLocation(0,80);
+                instruccioness.setFont(new Font("Arial", Font.BOLD, 15));
+
+                //    instruccioness.setSize();
+
+
+
+                add(instrucciones);
+                instrucciones.add(comocrea);
+                instrucciones.add(instruccioness);
+
+
+
+
+                repaint();
+                revalidate();
+
+
+
+            }
+        });
+        return menu;
+
+    }
+
+
+
+
+
 
     public JPanel login(){
         JPanel loginPanel = new JPanel();
@@ -233,5 +330,22 @@ public class Ventana extends JFrame {//hola
 
         });
         return listaUsuarios;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
