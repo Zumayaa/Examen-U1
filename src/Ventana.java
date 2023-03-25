@@ -217,12 +217,6 @@ public class Ventana extends JFrame {//hola
         acceder.setBackground(Color.decode("#ecd47f"));
         loginPanel.add(acceder);
 
-        JButton registrar = new JButton("Registrarse");
-        registrar.setSize(150,30);
-        registrar.setLocation(175,370);
-        registrar.setBackground(Color.decode("#0078FF"));
-        loginPanel.add(registrar);
-        
         acceder.addActionListener(new ActionListener() {
 
 			@Override
