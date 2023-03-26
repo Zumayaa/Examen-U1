@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -19,7 +20,8 @@ public class Ventana extends JFrame {//hola
 
     private String bienvenidonombre;
     private JComboBox<String> seleccionar = new JComboBox<String>();
-
+    
+    
     public Ventana(){
 
         this.setVisible(true);
@@ -174,7 +176,7 @@ public class Ventana extends JFrame {//hola
         }
         return cargaPanel;
     }
-
+    //LOGIN---------------------------------------------------------------------------
     public JPanel login(){
         anterior = actual;
         actual = "login";
@@ -405,7 +407,7 @@ public class Ventana extends JFrame {//hola
         return menu;
 
     }
-
+    //MI CUENTA------------------------------------------------------------------------------
     public JPanel miCuenta(){
         anterior = actual;
         actual = "micuenta";
@@ -469,6 +471,37 @@ public class Ventana extends JFrame {//hola
         accederRegistrar.setLocation(250,500);
         accederRegistrar.setBackground(Color.decode("#ecd47f"));
         miCuenta.add(accederRegistrar);
+        
+        accederRegistrar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				/*BufferedReader reader;
+				String namePersona = nombreRegistrar.getText();
+				String apellidoPersona = apeRegistrar.getText();
+				
+				try {
+					FileReader file = new FileReader("src\\users.txt");
+                    reader = new BufferedReader(file);
+                    String line = reader.readLine();
+                    while(line != null) {
+                        String data[] = line.split(",");
+                        if(namePersona.equals(data[2])) {
+                        	System.out.println(data[0]);
+                        }else {
+                        	System.out.println(data[0]);
+                        }
+                        line = reader.readLine();
+                    }
+				}catch(Exception er){
+					
+				}
+				
+				
+			}
+			*/
+        	
+        });
 
         JButton cancelar = new JButton("Cancelar");
         cancelar.setSize(150,30);
@@ -808,7 +841,7 @@ public class Ventana extends JFrame {//hola
 	
 				try {
 					bufer = new BufferedReader(new FileReader(file));
-					String[] columnas = {"Nombre", "Apellidos", "Correo", "Contraseña"};
+					String[] columnas = {"Nombre", "Apellidos", "Correo", "Contraseña", "Acción"};
 						
 					DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
 					modelo.setColumnIdentifiers(columnas);
@@ -821,6 +854,7 @@ public class Ventana extends JFrame {//hola
 						String linea = datosEnLinea[i].toString().trim();
 						String [] data = linea.split(",");
 						modelo.addRow(data);
+						
 					}	
 					tabla.setVisible(true);
 					scrollPane.setVisible(true);
