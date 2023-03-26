@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -261,7 +262,6 @@ public class Ventana extends JFrame {//hola
                             if(pwd.equals(data[3])) {
                                 flag = true;
                                 bienvenidonombre = data[0];
-
                             }
                         }
 
@@ -685,66 +685,57 @@ public class Ventana extends JFrame {//hola
         abrirTabla.setBackground(Color.decode("#ecd47f"));
         listaUsuarios.add(abrirTabla);
 
-        String[] columnas = {"No. Control", "Apellidos", "Nombres", "Acciones"};
+        JTable tabla = new JTable();
+        tabla.setLocation(120,400);
+        tabla.setSize(260,200);
+        tabla.setVisible(false);
+        listaUsuarios.add(tabla);
+        
+        JScrollPane scrollPane = new JScrollPane(tabla);
+        scrollPane.setLocation(50,400);
+        scrollPane.setSize(400,300);
+        scrollPane.setVisible(false);
+        listaUsuarios.add(scrollPane);
 
-        Object[][] data = {
-                {1,"Zumaya",    "Abraham",   ""},
-                {2,"Arias",     "Cruz",      ""},
-                {3,"Alejandro", "Francisco", ""},
-                {4,"PeñaNieto",     "Amlo",      ""},
-                {5,"Ojeda",    "Victoria",     ""}
-        };
+		abrirTabla.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				File file = new File("src\\users.txt");
+				BufferedReader bufer;
+				
+				try {
+					bufer = new BufferedReader(new FileReader(file));
+					String[] columnas = {"Nombre", "Apellidos", "Correo", "Contraseña"};
+					
+					DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+					modelo.setColumnIdentifiers(columnas);
+					
+					
+					Object[] datosEnLinea = bufer.lines().toArray();
+					
+					for(int i = 0; i<datosEnLinea.length; i++) {
+						String linea = datosEnLinea[i].toString().trim();
+						String [] data = linea.split(",");
+						modelo.addRow(data);
+					}
+							
+					tabla.setVisible(true);
+					scrollPane.setVisible(true);
+					
+				}catch (Exception er) {
+					er.printStackTrace();
+				}
+				
+			}
+			
+		});
         
         JComboBox seleccionar = new JComboBox();
         seleccionar.setSize(150,40);
         seleccionar.setLocation(100,160);
         listaUsuarios.add(seleccionar);
-       /* 
-        seleccionar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				FileReader lector = null;
-				try {
-					String cadenaLeida = "";
-					lector = new FileReader("src\\users.txt");
-					BufferedReader buffered = new BufferedReader(lector);
-					cadenaLeida = buffered.readLine();
-					while(cadenaLeida != null) {
-						StringTokenizer st = new StringTokenizer(cadenaLeida,",");
-						String nombres = st.nextToken();
-						seleccionar.addItem(nombres);
-						cadenaLeida = buffered.readLine();
-					}
-				}catch(Exception er) {
-					
-				}
-				
-			}
-        	
-        });
-*/
-        DefaultTableModel dtm = new DefaultTableModel(data,columnas);
-        JTable tabla = new JTable(dtm);
-        tabla.setVisible(true);
-        listaUsuarios.add(tabla);
-
-        JScrollPane pane = new JScrollPane(tabla);
-        pane.setLocation(100,500);
-        pane.setSize(260,200);
-        pane.setVisible(true);
-        listaUsuarios.add(pane);
-
-        abrirTabla.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                tabla.setVisible(true);
-                pane.setVisible(true);
-
-            }
-
-        });
+        
         return listaUsuarios;
 
     }
