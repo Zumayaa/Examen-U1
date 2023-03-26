@@ -135,13 +135,7 @@ public class Ventana extends JFrame {//hola
 				}
         		
         	});
-        	/*anterior = actual;
-        	actual = "login";
-        	limpiarVentana();
-        	
-        	repaint();
-        	revalidate();
-        	*/
+
 		}
         return cargaPanel;
     }
@@ -155,7 +149,6 @@ public class Ventana extends JFrame {//hola
         menu.setSize(350,24);
         menu.setLocation(30,20);
 
-
         this.add(menu);
 
         JMenuBar menuBar = new JMenuBar();
@@ -165,9 +158,7 @@ public class Ventana extends JFrame {//hola
         menuBar.add(cuenta);
         menuBar.add(usuarios);
         menuBar.add(ayuda);
-        menu.setLayout(new BorderLayout());
-        menu.add(menuBar,BorderLayout.NORTH);
-
+       
         JMenuItem micuenta = new JMenuItem("Mi cuenta");
         JMenuItem cerrasesi = new JMenuItem("Cerrar sesión");
         cuenta.add(cerrasesi);
@@ -180,8 +171,9 @@ public class Ventana extends JFrame {//hola
 
         JMenuItem comocrear = new JMenuItem("¿Como crear usuarios?");
         ayuda.add(comocrear);
-
-
+        
+        this.setJMenuBar(menuBar);
+        
         JPanel instrucciones = new JPanel();
         instrucciones.setSize(350, 250);
         instrucciones.setBackground(new Color(102, 255, 204));
@@ -194,6 +186,7 @@ public class Ventana extends JFrame {//hola
 				int op = JOptionPane.showConfirmDialog(null, "¿Desea cerrar sesión?", "Cerrar sesión",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
 				
 				if(op==JOptionPane.YES_OPTION) {
+					setJMenuBar(null);
 					anterior = actual;
                     actual = "login";
                     limpiarVentana();
@@ -213,7 +206,6 @@ public class Ventana extends JFrame {//hola
 				anterior = actual;
                 actual = "micuenta";
                 limpiarVentana();
-				
 			}
         	
         });
@@ -225,7 +217,6 @@ public class Ventana extends JFrame {//hola
 				anterior = actual;
                 actual = "listaUsers";
                 limpiarVentana();
-				
 			}
         	
         });
@@ -234,7 +225,6 @@ public class Ventana extends JFrame {//hola
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
 
                 JLabel comocrea = new JLabel("¿Como crear un usuario?");
                 comocrea.setFont(new Font("Arial", Font.BOLD, 18));
@@ -258,8 +248,6 @@ public class Ventana extends JFrame {//hola
                 instruccioness.setFont(new Font("Arial", Font.BOLD, 15));
 
                 //    instruccioness.setSize();
-
-
 
                 add(instrucciones);
                 instrucciones.add(comocrea);
