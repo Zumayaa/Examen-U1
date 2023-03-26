@@ -7,13 +7,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Ventana extends JFrame {//hola
+public class Ventanas extends JFrame {//hola
     public JPanel panel = null;
-    
+
     private String anterior = "cargaPantalla";
     private String actual = "cargaPantalla";
-    public Ventana(){
-    	
+    public Ventanas(){
+
         this.setVisible(true);
         this.setSize(600,700);
         this.setTitle("Datos generales");
@@ -29,13 +29,13 @@ public class Ventana extends JFrame {//hola
         this.repaint();
         this.revalidate();
     }
-    
+
     public void limpiarVentana(){
 
         if(panel!= null) {
             this.remove(panel);
         }
-        
+
         if(actual.equals("cargaPantalla")){
             panel = cargaPantalla();
 
@@ -62,7 +62,7 @@ public class Ventana extends JFrame {//hola
             this.repaint();
             this.revalidate();
         }
-        
+
         if(actual.equals("micuenta")){
             panel = miCuenta();
 
@@ -71,7 +71,18 @@ public class Ventana extends JFrame {//hola
             this.repaint();
             this.revalidate();
         }
-        
+
+        if(actual.equals("crearcuenta")){
+            panel = crearCuenta();
+
+            this.add(panel);
+
+            this.repaint();
+            this.revalidate();
+        }
+
+
+
         if(actual.equals("listaUsers")){
             panel = listaUsuarios();
 
@@ -83,9 +94,9 @@ public class Ventana extends JFrame {//hola
     }
 
     public JPanel cargaPantalla(){
-    	anterior = actual;
+        anterior = actual;
         actual = "cargaPantalla";
-        
+
         JPanel cargaPanel = new JPanel();
         cargaPanel.setSize(600, 700);
         cargaPanel.setLocation(0, 0);
@@ -98,51 +109,51 @@ public class Ventana extends JFrame {//hola
         bienvenido.setLocation(60,350);
         bienvenido.setForeground(Color.decode("#0C7F11"));
         cargaPanel.add(bienvenido);
-        
+
         JProgressBar barra = new JProgressBar(0,100);
         barra.setSize(400,100);
         barra.setLocation(100,100);
         cargaPanel.add(barra);
-        
+
         JButton iniciar = new JButton("Inicia");
-        iniciar.setSize(50,50);
-        iniciar.setLocation(150,200);
+        iniciar.setSize(90,50);
+        iniciar.setLocation(250,200);
         iniciar.setVisible(false);
         cargaPanel.add(iniciar);
-        
+
         this.add(cargaPanel);
-        
+
         try {
-        	for(int i = 0; i<=100;i++) {
-        		Thread.sleep(10);
-        		barra.setValue(i);
-        	}
+            for(int i = 0; i<=100;i++) {
+                Thread.sleep(10);
+                barra.setValue(i);
+            }
         }catch(Exception e) {
-        	
+
         }
         if(barra.getValue() == 100) {
-        	iniciar.setVisible(true);
-        	iniciar.addActionListener(new ActionListener() {
+            iniciar.setVisible(true);
+            iniciar.addActionListener(new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					anterior = actual;
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    anterior = actual;
                     actual = "login";
                     limpiarVentana();
-                    
+
                     repaint();
                     revalidate();
-				}
-        		
-        	});
+                }
 
-		}
+            });
+
+        }
         return cargaPanel;
     }
-    
+
     //MENU PRINCIPAL---------------------------------------------------------------------
     public JPanel menupanel(){
-    	anterior = actual;
+        anterior = actual;
         actual = "menu";
 
         JPanel menu = new JPanel();
@@ -158,7 +169,7 @@ public class Ventana extends JFrame {//hola
         menuBar.add(cuenta);
         menuBar.add(usuarios);
         menuBar.add(ayuda);
-       
+
         JMenuItem micuenta = new JMenuItem("Mi cuenta");
         JMenuItem cerrasesi = new JMenuItem("Cerrar sesión");
         cuenta.add(cerrasesi);
@@ -171,54 +182,67 @@ public class Ventana extends JFrame {//hola
 
         JMenuItem comocrear = new JMenuItem("¿Como crear usuarios?");
         ayuda.add(comocrear);
-        
+
         this.setJMenuBar(menuBar);
-        
+
         JPanel instrucciones = new JPanel();
         instrucciones.setSize(350, 250);
         instrucciones.setBackground(new Color(102, 255, 204));
         instrucciones.setLocation(20, 60);
-        
+
         cerrasesi.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int op = JOptionPane.showConfirmDialog(null, "¿Desea cerrar sesión?", "Cerrar sesión",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-				
-				if(op==JOptionPane.YES_OPTION) {
-					setJMenuBar(null);
-					anterior = actual;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int op = JOptionPane.showConfirmDialog(null, "¿Desea cerrar sesión?", "Cerrar sesión",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+
+                if(op==JOptionPane.YES_OPTION) {
+                    setJMenuBar(null);
+                    anterior = actual;
                     actual = "login";
                     limpiarVentana();
-                    
+
                     repaint();
                     revalidate();
-				}
-				
-			}
-        	
+                }
+
+            }
+
         });
-        
+
         micuenta.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				anterior = actual;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                anterior = actual;
                 actual = "micuenta";
                 limpiarVentana();
-			}
-        	
+            }
+
         });
-        
+
+        crearusu.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                anterior = actual;
+                actual = "crearcuenta";
+                limpiarVentana();
+
+            }
+        });
+
+
+
         listausu.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				anterior = actual;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                anterior = actual;
                 actual = "listaUsers";
                 limpiarVentana();
-			}
-        	
+            }
+
         });
 
         comocrear.addActionListener(new ActionListener() {
@@ -263,9 +287,9 @@ public class Ventana extends JFrame {//hola
 
 
     public JPanel login(){
-    	anterior = actual;
+        anterior = actual;
         actual = "login";
-        
+
         JPanel loginPanel = new JPanel();
         loginPanel.setSize(600, 700);
         loginPanel.setLocation(0, 0);
@@ -318,16 +342,17 @@ public class Ventana extends JFrame {//hola
 
         acceder.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String email = username.getText();
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String email = username.getText();
                 String pwd = new String (contrasena.getPassword());
 
                 BufferedReader reader;
                 Boolean flag = false;
 
                 try{
-                    FileReader file = new FileReader("src\\users.txt");
+                    //  FileReader file = new FileReader("src\\users.txt");
+                    FileReader file = new FileReader("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
                     reader = new BufferedReader(file);
                     String line = reader.readLine();
 
@@ -343,7 +368,7 @@ public class Ventana extends JFrame {//hola
                         line = reader.readLine();
                     }
                     if(flag) {
-                    	System.out.println("entra");
+                        System.out.println("entra");
                         anterior = actual;
                         actual = "menu";
                         limpiarVentana();
@@ -357,16 +382,17 @@ public class Ventana extends JFrame {//hola
                     e1.printStackTrace();
                 }
             }
-        	
+
         });
 
         return loginPanel;
     }
 
+
     public JPanel miCuenta(){
-    	anterior = actual;
+        anterior = actual;
         actual = "micuenta";
-        
+
         JPanel miCuenta = new JPanel();
         miCuenta.setSize(600, 700);
         miCuenta.setLocation(0, 0);
@@ -423,38 +449,150 @@ public class Ventana extends JFrame {//hola
 
         JButton accederRegistrar = new JButton("Actualizar datos");
         accederRegistrar.setSize(150,30);
-        accederRegistrar.setLocation(175,500);
+        accederRegistrar.setLocation(250,500);
         accederRegistrar.setBackground(Color.decode("#ecd47f"));
         miCuenta.add(accederRegistrar);
-        
+
         JButton cancelar = new JButton("Cancelar");
         cancelar.setSize(150,30);
         cancelar.setLocation(100,500);
         cancelar.setBackground(Color.decode("#E32636"));
         miCuenta.add(cancelar);
-        
+
         cancelar.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				anterior = actual;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                anterior = actual;
                 actual = "menu";
                 limpiarVentana();
 
                 repaint();
                 revalidate();
-				
-			}
-        	
+
+            }
+
         });
 
         return miCuenta;
     }
 
+
+
+
+    public JPanel crearCuenta(){
+        anterior = actual;
+        actual = "crearcuenta";
+
+        JPanel crearCuenta = new JPanel();
+        crearCuenta.setSize(600, 700);
+        crearCuenta.setLocation(0, 0);
+        crearCuenta.setLayout(null);
+        crearCuenta.setBackground(Color.decode("#A5F2DA"));
+
+        JLabel nameRegistrar = new JLabel("Ingresa tu nombre",JLabel.CENTER);
+        nameRegistrar.setFont(new Font("Arial",Font.BOLD,12));
+        nameRegistrar.setSize(300,80);
+        nameRegistrar.setLocation(05,110);
+        nameRegistrar.setForeground(Color.white);
+        crearCuenta.add(nameRegistrar);
+
+        JTextField nombreRegistrar = new JTextField();
+        nombreRegistrar.setSize(150,40);
+        nombreRegistrar.setLocation(100,160);
+        crearCuenta.add(nombreRegistrar);
+
+        JLabel apellidoRegistrar = new JLabel("Ingresa tu apellido",JLabel.CENTER);
+        apellidoRegistrar.setFont(new Font("Arial",Font.BOLD,12));
+        apellidoRegistrar.setSize(300,80);
+        apellidoRegistrar.setLocation(205,110);
+        apellidoRegistrar.setForeground(Color.white);
+        crearCuenta.add(apellidoRegistrar);
+
+        JTextField apeRegistrar = new JTextField();
+        apeRegistrar.setSize(150,40);
+        apeRegistrar.setLocation(260,160);
+        crearCuenta.add(apeRegistrar);
+
+        JLabel emailRegistrar = new JLabel("Correo electrónico",JLabel.CENTER);
+        emailRegistrar.setFont(new Font("Arial",Font.BOLD,12));
+        emailRegistrar.setSize(260,80);
+        emailRegistrar.setLocation(50,190);
+        emailRegistrar.setForeground(Color.white);
+        crearCuenta.add(emailRegistrar);
+
+        JTextField correoRegistrar = new JTextField();
+        correoRegistrar.setSize(250,40);
+        correoRegistrar.setLocation(125,240);
+        crearCuenta.add(correoRegistrar);
+
+        JLabel passRegistrar = new JLabel("Contraseña",JLabel.CENTER);
+        passRegistrar.setFont(new Font("Arial",Font.BOLD,12));
+        passRegistrar.setSize(260,80);
+        passRegistrar.setLocation(30,260);
+        passRegistrar.setForeground(Color.white);
+        crearCuenta.add(passRegistrar);
+
+        JPasswordField contraseñaRegistrar = new JPasswordField();
+        contraseñaRegistrar.setSize(250,40);
+        contraseñaRegistrar.setLocation(125,310);
+        crearCuenta.add(contraseñaRegistrar);
+
+        JLabel passConf = new JLabel("Confirmar contraseña",JLabel.CENTER);
+        passConf.setFont(new Font("Arial",Font.BOLD,12));
+        passConf.setSize(260,80);
+        passConf.setLocation(60,330);
+        passConf.setForeground(Color.white);
+        crearCuenta.add(passConf);
+
+        JPasswordField contraseñaConfirmar = new JPasswordField();
+        contraseñaConfirmar.setSize(250,40);
+        contraseñaConfirmar.setLocation(125,380);
+        crearCuenta.add(contraseñaConfirmar);
+
+
+        JButton accederRegistrar = new JButton("Actualizar datos");
+        accederRegistrar.setSize(150,30);
+        accederRegistrar.setLocation(250,500);
+        accederRegistrar.setBackground(Color.decode("#ecd47f"));
+        crearCuenta.add(accederRegistrar);
+
+        JButton cancelar = new JButton("Cancelar");
+        cancelar.setSize(150,30);
+        cancelar.setLocation(100,500);
+        cancelar.setBackground(Color.decode("#E32636"));
+        crearCuenta.add(cancelar);
+
+        cancelar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                anterior = actual;
+                actual = "menu";
+                limpiarVentana();
+
+                repaint();
+                revalidate();
+
+            }
+
+        });
+        return crearCuenta;
+    }
+
+
+
+
+
+
+
+
+
+
     public JPanel listaUsuarios(){
-    	anterior = actual;
+        anterior = actual;
         actual = "listaUsers";
-        
+
         JPanel listaUsuarios = new JPanel();
         listaUsuarios.setSize(600, 700);
         listaUsuarios.setLocation(0, 0);
@@ -501,21 +639,8 @@ public class Ventana extends JFrame {//hola
         });
         return listaUsuarios;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
+
+
+
 }
