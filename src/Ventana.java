@@ -352,7 +352,7 @@ public class Ventanas extends JFrame {//hola
 
                 try{
                     //  FileReader file = new FileReader("src\\users.txt");
-                    FileReader file = new FileReader("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
+                    FileReader file = new FileReader("src\\users.txt");
                     reader = new BufferedReader(file);
                     String line = reader.readLine();
 

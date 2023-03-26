@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a42e13a9-ae6c-406a-81ed-4c225c6a7dc9" name="Changes" comment="Añadir en el menu, actionlistener y mostrar instructivo para creación de cuenta">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a42e13a9-ae6c-406a-81ed-4c225c6a7dc9" name="Changes" comment="Añadir el panel de opciones para crear nuevos usuarios, y confirmacion de contraseña" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,12 +70,20 @@
       <option name="project" value="LOCAL" />
       <updated>1679722948164</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Añadir el panel de opciones para crear nuevos usuarios, y confirmacion de contraseña">
+      <created>1679797662942</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1679797662942</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Push test" />
     <MESSAGE value="Añadir en el menu, actionlistener y mostrar instructivo para creación de cuenta" />
-    <option name="LAST_COMMIT_MESSAGE" value="Añadir en el menu, actionlistener y mostrar instructivo para creación de cuenta" />
+    <MESSAGE value="Añadir el panel de opciones para crear nuevos usuarios, y confirmacion de contraseña" />
+    <option name="LAST_COMMIT_MESSAGE" value="Añadir el panel de opciones para crear nuevos usuarios, y confirmacion de contraseña" />
   </component>
 </project>
