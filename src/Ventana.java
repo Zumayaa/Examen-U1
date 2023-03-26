@@ -103,7 +103,13 @@ public class Ventana extends JFrame {//hola
         barra.setSize(400,100);
         barra.setLocation(100,100);
         cargaPanel.add(barra);
-
+        
+        JButton iniciar = new JButton("Inicia");
+        iniciar.setSize(50,50);
+        iniciar.setLocation(150,200);
+        iniciar.setVisible(false);
+        cargaPanel.add(iniciar);
+        
         this.add(cargaPanel);
         
         try {
@@ -115,12 +121,27 @@ public class Ventana extends JFrame {//hola
         	
         }
         if(barra.getValue() == 100) {
-        	anterior = actual;
-            actual = "login";
-            limpiarVentana();
-            
-            repaint();
-            revalidate();
+        	iniciar.setVisible(true);
+        	iniciar.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					anterior = actual;
+                    actual = "login";
+                    limpiarVentana();
+                    
+                    repaint();
+                    revalidate();
+				}
+        		
+        	});
+        	/*anterior = actual;
+        	actual = "login";
+        	limpiarVentana();
+        	
+        	repaint();
+        	revalidate();
+        	*/
 		}
         return cargaPanel;
     }
@@ -333,8 +354,8 @@ public class Ventana extends JFrame {//hola
 
                         line = reader.readLine();
                     }
-
                     if(flag) {
+                    	System.out.println("entra");
                         anterior = actual;
                         actual = "menu";
                         limpiarVentana();
@@ -411,18 +432,6 @@ public class Ventana extends JFrame {//hola
         contraseñaRegistrar.setSize(250,40);
         contraseñaRegistrar.setLocation(125,310);
         miCuenta.add(contraseñaRegistrar);
-
-        JLabel confirmPass = new JLabel("Confirmar contraseña",JLabel.CENTER);
-        confirmPass.setFont(new Font("Arial",Font.BOLD,12));
-        confirmPass.setSize(260,80);
-        confirmPass.setLocation(60,330);
-        confirmPass.setForeground(Color.white);
-        miCuenta.add(confirmPass);
-
-        JPasswordField contraseñaConfirmar = new JPasswordField();
-        contraseñaConfirmar.setSize(250,40);
-        contraseñaConfirmar.setLocation(125,380);
-        miCuenta.add(contraseñaConfirmar);
 
         JButton accederRegistrar = new JButton("Actualizar datos");
         accederRegistrar.setSize(150,30);
