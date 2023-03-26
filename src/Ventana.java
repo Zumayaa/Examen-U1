@@ -12,6 +12,9 @@ public class Ventana extends JFrame {//hola
 
     private String anterior = "cargaPantalla";
     private String actual = "cargaPantalla";
+
+    private String bienvenidonombre;
+
     public Ventana(){
 
         this.setVisible(true);
@@ -227,7 +230,7 @@ public class Ventana extends JFrame {//hola
 
                 try{
                     //  FileReader file = new FileReader("src\\users.txt");
-                    FileReader file = new FileReader("src\\users.txt");
+                    FileReader file = new FileReader("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
                     reader = new BufferedReader(file);
                     String line = reader.readLine();
 
@@ -237,6 +240,8 @@ public class Ventana extends JFrame {//hola
                         if(email.equals(data[2])) {
                             if(pwd.equals(data[3])) {
                                 flag = true;
+                                bienvenidonombre = data[0];
+
                             }
                         }
 
@@ -271,10 +276,14 @@ public class Ventana extends JFrame {//hola
         JPanel menu = new JPanel();
         menu.setSize(520,60);
         menu.setLocation(30,20);
-        JLabel bienvenido = new JLabel("Hola ");
+        JLabel bienvenido = new JLabel("Hola " + bienvenidonombre);
         bienvenido.setFont(new Font("Arial", Font.BOLD, 24));
         bienvenido.setLocation(0,0);
         menu.setBackground(Color.decode("#7cd6ab"));
+
+        menu.add(bienvenido);
+
+        this.add(menu);
 
         JMenuBar menuBar = new JMenuBar();
         JMenu cuenta = new JMenu("Cuenta");
