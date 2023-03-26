@@ -11,7 +11,7 @@ public class Ventana extends JFrame {//hola
     public JPanel panel = null;
     
     private String anterior = "cargaPantalla";
-    private String actual = "login";
+    private String actual = "cargaPantalla";
     public Ventana(){
     	
         this.setVisible(true);
@@ -34,6 +34,15 @@ public class Ventana extends JFrame {//hola
 
         if(panel!= null) {
             this.remove(panel);
+        }
+        
+        if(actual.equals("cargaPantalla")){
+            panel = cargaPantalla();
+
+            this.add(panel);
+
+            this.repaint();
+            this.revalidate();
         }
 
         if(actual.equals("login")){
@@ -74,6 +83,9 @@ public class Ventana extends JFrame {//hola
     }
 
     public JPanel cargaPantalla(){
+    	anterior = actual;
+        actual = "cargaPantalla";
+        
         JPanel cargaPanel = new JPanel();
         cargaPanel.setSize(600, 700);
         cargaPanel.setLocation(0, 0);
@@ -86,8 +98,30 @@ public class Ventana extends JFrame {//hola
         bienvenido.setLocation(60,350);
         bienvenido.setForeground(Color.decode("#0C7F11"));
         cargaPanel.add(bienvenido);
+        
+        JProgressBar barra = new JProgressBar(0,100);
+        barra.setSize(400,100);
+        barra.setLocation(100,100);
+        cargaPanel.add(barra);
 
         this.add(cargaPanel);
+        
+        try {
+        	for(int i = 0; i<=100;i++) {
+        		Thread.sleep(10);
+        		barra.setValue(i);
+        	}
+        }catch(Exception e) {
+        	
+        }
+        if(barra.getValue() == 100) {
+        	anterior = actual;
+            actual = "login";
+            limpiarVentana();
+            
+            repaint();
+            revalidate();
+		}
         return cargaPanel;
     }
     
