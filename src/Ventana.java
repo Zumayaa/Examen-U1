@@ -79,6 +79,15 @@ public class Ventana extends JFrame {//hola
             this.repaint();
             this.revalidate();
         }
+        
+        if(actual.equals("editarCuenta")){
+            panel = editarCuenta();
+
+            this.add(panel);
+
+            this.repaint();
+            this.revalidate();
+        }
 
         if(actual.equals("crearcuenta")){
             panel = crearCuenta();
@@ -484,6 +493,94 @@ public class Ventana extends JFrame {//hola
 
         return miCuenta;
     }
+    
+    public JPanel editarCuenta(){
+        anterior = actual;
+        actual = "editarCuenta";
+
+        JPanel miCuenta = new JPanel();
+        miCuenta.setSize(600, 700);
+        miCuenta.setLocation(0, 0);
+        miCuenta.setLayout(null);
+        miCuenta.setBackground(Color.decode("#A5F2DA"));
+
+        JLabel nameRegistrar = new JLabel("Ingresa tu nombre",JLabel.CENTER);
+        nameRegistrar.setFont(new Font("Arial",Font.BOLD,12));
+        nameRegistrar.setSize(300,80);
+        nameRegistrar.setLocation(05,110);
+        nameRegistrar.setForeground(Color.white);
+        miCuenta.add(nameRegistrar);
+
+        JTextField nombreRegistrar = new JTextField();
+        nombreRegistrar.setSize(150,40);
+        nombreRegistrar.setLocation(100,160);
+        miCuenta.add(nombreRegistrar);
+
+        JLabel apellidoRegistrar = new JLabel("Ingresa tu apellido",JLabel.CENTER);
+        apellidoRegistrar.setFont(new Font("Arial",Font.BOLD,12));
+        apellidoRegistrar.setSize(300,80);
+        apellidoRegistrar.setLocation(205,110);
+        apellidoRegistrar.setForeground(Color.white);
+        miCuenta.add(apellidoRegistrar);
+
+        JTextField apeRegistrar = new JTextField();
+        apeRegistrar.setSize(150,40);
+        apeRegistrar.setLocation(260,160);
+        miCuenta.add(apeRegistrar);
+
+        JLabel emailRegistrar = new JLabel("Correo electrónico",JLabel.CENTER);
+        emailRegistrar.setFont(new Font("Arial",Font.BOLD,12));
+        emailRegistrar.setSize(260,80);
+        emailRegistrar.setLocation(50,190);
+        emailRegistrar.setForeground(Color.white);
+        miCuenta.add(emailRegistrar);
+
+        JTextField correoRegistrar = new JTextField();
+        correoRegistrar.setSize(250,40);
+        correoRegistrar.setLocation(125,240);
+        miCuenta.add(correoRegistrar);
+
+        JLabel passRegistrar = new JLabel("Contraseña",JLabel.CENTER);
+        passRegistrar.setFont(new Font("Arial",Font.BOLD,12));
+        passRegistrar.setSize(260,80);
+        passRegistrar.setLocation(30,260);
+        passRegistrar.setForeground(Color.white);
+        miCuenta.add(passRegistrar);
+
+        JPasswordField contraseñaRegistrar = new JPasswordField();
+        contraseñaRegistrar.setSize(250,40);
+        contraseñaRegistrar.setLocation(125,310);
+        miCuenta.add(contraseñaRegistrar);
+
+        JButton accederRegistrar = new JButton("Actualizar datos");
+        accederRegistrar.setSize(150,30);
+        accederRegistrar.setLocation(250,500);
+        accederRegistrar.setBackground(Color.decode("#ecd47f"));
+        miCuenta.add(accederRegistrar);
+
+        JButton cancelar = new JButton("Cancelar");
+        cancelar.setSize(150,30);
+        cancelar.setLocation(100,500);
+        cancelar.setBackground(Color.decode("#E32636"));
+        miCuenta.add(cancelar);
+
+        cancelar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                anterior = actual;
+                actual = "listaUsers";
+                limpiarVentana();
+
+                repaint();
+                revalidate();
+
+            }
+
+        });
+
+        return miCuenta;
+    }
 
     public JPanel crearCuenta(){
         anterior = actual;
@@ -691,6 +788,17 @@ public class Ventana extends JFrame {//hola
         scrollPane.setSize(400,300);
         scrollPane.setVisible(false);
         listaUsuarios.add(scrollPane);
+        
+        editarUser.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				anterior = actual;
+				actual = "editarCuenta";
+                limpiarVentana();
+			}
+        	
+        });
 
 		abrirTabla.addActionListener(new ActionListener() {
 			@Override
