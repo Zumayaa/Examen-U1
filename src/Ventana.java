@@ -5,7 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
 
 public class Ventana extends JFrame {//hola
     public JPanel panel = null;
@@ -230,7 +233,7 @@ public class Ventana extends JFrame {//hola
 
                 try{
                     //  FileReader file = new FileReader("src\\users.txt");
-                    FileReader file = new FileReader("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
+                    FileReader file = new FileReader("src\\users.txt");
                     reader = new BufferedReader(file);
                     String line = reader.readLine();
 
@@ -523,10 +526,10 @@ public class Ventana extends JFrame {//hola
         passRegistrar.setForeground(Color.white);
         crearCuenta.add(passRegistrar);
 
-        JPasswordField contraseñaRegistrar = new JPasswordField();
-        contraseñaRegistrar.setSize(250,40);
-        contraseñaRegistrar.setLocation(125,310);
-        crearCuenta.add(contraseñaRegistrar);
+        JPasswordField contrasenaRegistrar = new JPasswordField();
+        contrasenaRegistrar.setSize(250,40);
+        contrasenaRegistrar.setLocation(125,310);
+        crearCuenta.add(contrasenaRegistrar);
 
         JLabel passConf = new JLabel("Confirmar contraseña",JLabel.CENTER);
         passConf.setFont(new Font("Arial",Font.BOLD,12));
@@ -535,10 +538,10 @@ public class Ventana extends JFrame {//hola
         passConf.setForeground(Color.white);
         crearCuenta.add(passConf);
 
-        JPasswordField contraseñaConfirmar = new JPasswordField();
-        contraseñaConfirmar.setSize(250,40);
-        contraseñaConfirmar.setLocation(125,380);
-        crearCuenta.add(contraseñaConfirmar);
+        JPasswordField contrasenaConfirmar = new JPasswordField();
+        contrasenaConfirmar.setSize(250,40);
+        contrasenaConfirmar.setLocation(125,380);
+        crearCuenta.add(contrasenaConfirmar);
 
         JButton accederRegistrar = new JButton("Actualizar datos");
         accederRegistrar.setSize(150,30);
@@ -566,6 +569,65 @@ public class Ventana extends JFrame {//hola
             }
 
         });
+        
+        accederRegistrar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String name = nombreRegistrar.getText();
+				String apellido = apeRegistrar.getText();
+				String email = correoRegistrar.getText();
+				String pwd = (new String(contrasenaRegistrar.getPassword()));
+				String pwdCopy = (new String(contrasenaConfirmar.getPassword()));
+				FileWriter writer;
+				PrintWriter linea;
+				
+				if(name.length() == 0 || apellido.length() == 0 || email.length() == 0 || pwd.length() == 0 || pwdCopy.length() == 0) {
+					JOptionPane.showMessageDialog(null, "No has ingresado uno o más valores","Mal",JOptionPane.WARNING_MESSAGE);
+					nombreRegistrar.setText("");
+					apeRegistrar.setText("");
+					correoRegistrar.setText("");
+					contrasenaRegistrar.setText("");
+					contrasenaConfirmar.setText("");
+				}else {
+					if(pwd.equals(pwdCopy)) {
+						try {
+							writer = new FileWriter("src\\users.txt",true);
+							linea = new PrintWriter(writer);
+							
+							linea.println(name + "," + apellido + "," + email + "," + pwd);
+							linea.close();
+							writer.close();
+							
+							int op = JOptionPane.showConfirmDialog(null, "Creado exitosamente, ¿Desea crear otro usuario?", "Éxito",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+							
+							if(op == JOptionPane.YES_OPTION) {
+								nombreRegistrar.setText("");
+								apeRegistrar.setText("");
+								correoRegistrar.setText("");
+								contrasenaRegistrar.setText("");
+								contrasenaConfirmar.setText("");
+							}else {
+								anterior = actual;
+				                actual = "menu";
+				                limpiarVentana();
+				                JOptionPane.showMessageDialog(null, "Fue reedirigido al menú", "Usted no quiere crear otro usuario",JOptionPane.INFORMATION_MESSAGE);
+
+				                repaint();
+				                revalidate();
+							}
+						}catch(IOException de){
+							de.printStackTrace();
+						}
+					}else {
+						JOptionPane.showMessageDialog(null, "Tas ciego","Las contraseñas no coinciden",JOptionPane.WARNING_MESSAGE);
+						contrasenaRegistrar.setText("");
+						contrasenaConfirmar.setText("");
+					}
+				}
+			}
+			
+		});
         return crearCuenta;
     }
 
@@ -594,11 +656,6 @@ public class Ventana extends JFrame {//hola
         editar.setForeground(Color.decode("#dcca8a"));
         listaUsuarios.add(editar);
 
-        JComboBox seleccionar = new JComboBox();
-        seleccionar.setSize(150,40);
-        seleccionar.setLocation(100,160);
-        listaUsuarios.add(seleccionar);
-
         JButton editarUser = new JButton("Editar");
         editarUser.setSize(150,30);
         editarUser.setLocation(175,250);
@@ -620,7 +677,36 @@ public class Ventana extends JFrame {//hola
                 {4,"PeñaNieto",     "Amlo",      ""},
                 {5,"Ojeda",    "Victoria",     ""}
         };
+        
+        JComboBox seleccionar = new JComboBox();
+        seleccionar.setSize(150,40);
+        seleccionar.setLocation(100,160);
+        listaUsuarios.add(seleccionar);
+       /* 
+        seleccionar.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				FileReader lector = null;
+				try {
+					String cadenaLeida = "";
+					lector = new FileReader("src\\users.txt");
+					BufferedReader buffered = new BufferedReader(lector);
+					cadenaLeida = buffered.readLine();
+					while(cadenaLeida != null) {
+						StringTokenizer st = new StringTokenizer(cadenaLeida,",");
+						String nombres = st.nextToken();
+						seleccionar.addItem(nombres);
+						cadenaLeida = buffered.readLine();
+					}
+				}catch(Exception er) {
+					
+				}
+				
+			}
+        	
+        });
+*/
         DefaultTableModel dtm = new DefaultTableModel(data,columnas);
         JTable tabla = new JTable(dtm);
         tabla.setVisible(true);
@@ -685,6 +771,21 @@ public class Ventana extends JFrame {//hola
         crear.setLocation(250,500);
         crear.setBackground(Color.decode("#ecd47f"));
         ayuda.add(crear);
+        
+        crear.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				anterior = actual;
+                actual = "crearcuenta";
+                limpiarVentana();
+
+                repaint();
+                revalidate();
+				
+			}
+        	
+        });
 
         return ayuda;
 
