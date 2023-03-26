@@ -18,6 +18,7 @@ public class Ventana extends JFrame {//hola
     private String actual = "cargaPantalla";
 
     private String bienvenidonombre;
+    private JComboBox<String> seleccionar = new JComboBox<String>();
 
     public Ventana(){
 
@@ -164,9 +165,6 @@ public class Ventana extends JFrame {//hola
         }
         return cargaPanel;
     }
-
-
-
 
     public JPanel login(){
         anterior = actual;
@@ -398,9 +396,6 @@ public class Ventana extends JFrame {//hola
         return menu;
 
     }
-
-
-
 
     public JPanel miCuenta(){
         anterior = actual;
@@ -718,8 +713,7 @@ public class Ventana extends JFrame {//hola
 						String linea = datosEnLinea[i].toString().trim();
 						String [] data = linea.split(",");
 						modelo.addRow(data);
-					}
-								
+					}	
 					tabla.setVisible(true);
 					scrollPane.setVisible(true);
 					repaint();
@@ -733,7 +727,6 @@ public class Ventana extends JFrame {//hola
 			
 		});
         
-        JComboBox seleccionar = new JComboBox();
         seleccionar.setSize(150,40);
         seleccionar.setLocation(100,160);
         listaUsuarios.add(seleccionar);
