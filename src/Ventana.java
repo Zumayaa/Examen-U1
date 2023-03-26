@@ -698,31 +698,33 @@ public class Ventana extends JFrame {//hola
         listaUsuarios.add(scrollPane);
 
 		abrirTabla.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				File file = new File("src\\users.txt");
 				BufferedReader bufer;
-				
+	
 				try {
 					bufer = new BufferedReader(new FileReader(file));
 					String[] columnas = {"Nombre", "Apellidos", "Correo", "Contraseña"};
-					
+						
 					DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
 					modelo.setColumnIdentifiers(columnas);
-					
-					
+						
+					modelo.setRowCount(0);
+						
 					Object[] datosEnLinea = bufer.lines().toArray();
-					
+						
 					for(int i = 0; i<datosEnLinea.length; i++) {
 						String linea = datosEnLinea[i].toString().trim();
 						String [] data = linea.split(",");
 						modelo.addRow(data);
 					}
-							
+								
 					tabla.setVisible(true);
 					scrollPane.setVisible(true);
-					
+					repaint();
+					revalidate();
+						
 				}catch (Exception er) {
 					er.printStackTrace();
 				}
