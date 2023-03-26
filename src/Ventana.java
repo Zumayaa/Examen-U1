@@ -7,16 +7,16 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Ventanas extends JFrame {//hola
+public class Ventana extends JFrame {//hola
     public JPanel panel = null;
 
     private String anterior = "cargaPantalla";
     private String actual = "cargaPantalla";
-    public Ventanas(){
+    public Ventana(){
 
         this.setVisible(true);
         this.setSize(600,700);
-        this.setTitle("Datos generales");
+        this.setTitle("Sistema");
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.decode("#CAE9DA"));
@@ -81,10 +81,17 @@ public class Ventanas extends JFrame {//hola
             this.revalidate();
         }
 
-
-
         if(actual.equals("listaUsers")){
             panel = listaUsuarios();
+
+            this.add(panel);
+
+            this.repaint();
+            this.revalidate();
+        }
+        
+        if(actual.equals("ayuda")){
+            panel = ayuda();
 
             this.add(panel);
 
@@ -160,8 +167,6 @@ public class Ventanas extends JFrame {//hola
         menu.setSize(350,24);
         menu.setLocation(30,20);
 
-        this.add(menu);
-
         JMenuBar menuBar = new JMenuBar();
         JMenu cuenta = new JMenu("Cuenta");
         JMenu usuarios = new JMenu("Usuarios");
@@ -184,11 +189,6 @@ public class Ventanas extends JFrame {//hola
         ayuda.add(comocrear);
 
         this.setJMenuBar(menuBar);
-
-        JPanel instrucciones = new JPanel();
-        instrucciones.setSize(350, 250);
-        instrucciones.setBackground(new Color(102, 255, 204));
-        instrucciones.setLocation(20, 60);
 
         cerrasesi.addActionListener(new ActionListener() {
 
@@ -249,33 +249,9 @@ public class Ventanas extends JFrame {//hola
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                JLabel comocrea = new JLabel("¿Como crear un usuario?");
-                comocrea.setFont(new Font("Arial", Font.BOLD, 18));
-
-                //   comocrea.setLocation(50,0);
-                JTextArea instruccioness = new JTextArea("1.Hacer click en la opción 'Usuarios' en\n" +
-                        "el menú superior.\n"+
-                        "2.Hacer click en la opción 'Crear Usuario'\n"+
-                        "en el menú desplegado.\n"+
-                        "3.Llenar los campos solicitados\n"+
-                        "4.Escribi una pequeña descripción de ti\n"+
-                        "5.Seleccionar tu comida favorita.\n"+
-                        "6.Seleccionar tu color favorito.\n"+
-                        "7.Hacer click en el botón 'Crear Usuario'\n"+
-                        "8.Listo, el usuario se ha creado.");
-                instruccioness.setEditable(false);
-
-                //    instruccioness.setLocation(0,20);
-                instruccioness.setBackground(new Color(102, 255, 204));
-                instruccioness.setLocation(0,80);
-                instruccioness.setFont(new Font("Arial", Font.BOLD, 15));
-
-                //    instruccioness.setSize();
-
-                add(instrucciones);
-                instrucciones.add(comocrea);
-                instrucciones.add(instruccioness);
+            	anterior = actual;
+                actual = "ayuda";
+                limpiarVentana();
 
                 repaint();
                 revalidate();
@@ -284,7 +260,6 @@ public class Ventanas extends JFrame {//hola
         return menu;
 
     }
-
 
     public JPanel login(){
         anterior = actual;
@@ -388,7 +363,6 @@ public class Ventanas extends JFrame {//hola
         return loginPanel;
     }
 
-
     public JPanel miCuenta(){
         anterior = actual;
         actual = "micuenta";
@@ -476,9 +450,6 @@ public class Ventanas extends JFrame {//hola
 
         return miCuenta;
     }
-
-
-
 
     public JPanel crearCuenta(){
         anterior = actual;
@@ -581,14 +552,6 @@ public class Ventanas extends JFrame {//hola
     }
 
 
-
-
-
-
-
-
-
-
     public JPanel listaUsuarios(){
         anterior = actual;
         actual = "listaUsers";
@@ -639,6 +602,44 @@ public class Ventanas extends JFrame {//hola
         });
         return listaUsuarios;
 
+    }
+    
+    public JPanel ayuda() {
+    	anterior = actual;
+        actual = "ayuda";
+        
+    	JPanel ayuda = new JPanel();
+    	ayuda.setSize(600, 700);
+    	ayuda.setLocation(0, 0);
+    	ayuda.setLayout(null);
+    	ayuda.setBackground(Color.decode("#A5F2DA"));
+    	
+    	JLabel comocrea = new JLabel("¿Como crear un usuario?");
+        comocrea.setFont(new Font("Arial", Font.BOLD, 18));
+        comocrea.setLocation(100,100);
+        comocrea.setSize(300,30);
+        ayuda.add(comocrea);
+        
+        JTextArea instrucciones = new JTextArea("1. Hacer click en la opción 'Usuarios' en\n" +
+                "el menú superior.\n"+
+                "2. Hacer click en la opción 'Crear Usuario'\n"+
+                "en el menú desplegado.\n"+
+                "3. Llenar los campos solicitados\n"+
+                "4. Escribi una pequeña descripción de ti\n"+
+                "5. Seleccionar tu comida favorita.\n"+
+                "6. Seleccionar tu color favorito.\n"+
+                "7. Hacer click en el botón 'Crear Usuario'\n"+
+                "8. Listo, el usuario se ha creado.");
+        instrucciones.setEditable(false);
+
+        instrucciones.setBackground(new Color(102, 255, 204));
+        instrucciones.setLocation(100,180);
+        instrucciones.setSize(300,200);
+        instrucciones.setFont(new Font("Arial", Font.BOLD, 15));
+        ayuda.add(instrucciones);
+    	
+    	return ayuda;
+    	
     }
 
 
