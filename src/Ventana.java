@@ -89,7 +89,7 @@ public class Ventana extends JFrame {//hola
             this.repaint();
             this.revalidate();
         }
-        
+
         if(actual.equals("ayuda")){
             panel = ayuda();
 
@@ -158,108 +158,8 @@ public class Ventana extends JFrame {//hola
         return cargaPanel;
     }
 
-    //MENU PRINCIPAL---------------------------------------------------------------------
-    public JPanel menupanel(){
-        anterior = actual;
-        actual = "menu";
-
-        JPanel menu = new JPanel();
-        menu.setSize(350,24);
-        menu.setLocation(30,20);
-
-        JMenuBar menuBar = new JMenuBar();
-        JMenu cuenta = new JMenu("Cuenta");
-        JMenu usuarios = new JMenu("Usuarios");
-        JMenu ayuda = new JMenu("Ayuda");
-        menuBar.add(cuenta);
-        menuBar.add(usuarios);
-        menuBar.add(ayuda);
-
-        JMenuItem micuenta = new JMenuItem("Mi cuenta");
-        JMenuItem cerrasesi = new JMenuItem("Cerrar sesión");
-        cuenta.add(cerrasesi);
-        cuenta.add(micuenta);
-
-        JMenuItem listausu = new JMenuItem("Lista de usuarios");
-        JMenuItem crearusu = new JMenuItem("Crear Usuario");
-        usuarios.add(listausu);
-        usuarios.add(crearusu);
-
-        JMenuItem comocrear = new JMenuItem("¿Como crear usuarios?");
-        ayuda.add(comocrear);
-
-        this.setJMenuBar(menuBar);
-
-        cerrasesi.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int op = JOptionPane.showConfirmDialog(null, "¿Desea cerrar sesión?", "Cerrar sesión",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-
-                if(op==JOptionPane.YES_OPTION) {
-                    setJMenuBar(null);
-                    anterior = actual;
-                    actual = "login";
-                    limpiarVentana();
-
-                    repaint();
-                    revalidate();
-                }
-
-            }
-
-        });
-
-        micuenta.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                anterior = actual;
-                actual = "micuenta";
-                limpiarVentana();
-            }
-
-        });
-
-        crearusu.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                anterior = actual;
-                actual = "crearcuenta";
-                limpiarVentana();
-
-            }
-        });
 
 
-
-        listausu.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                anterior = actual;
-                actual = "listaUsers";
-                limpiarVentana();
-            }
-
-        });
-
-        comocrear.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	anterior = actual;
-                actual = "ayuda";
-                limpiarVentana();
-
-                repaint();
-                revalidate();
-            }
-        });
-        return menu;
-
-    }
 
     public JPanel login(){
         anterior = actual;
@@ -362,6 +262,116 @@ public class Ventana extends JFrame {//hola
 
         return loginPanel;
     }
+
+    //MENU PRINCIPAL---------------------------------------------------------------------
+    public JPanel menupanel(){
+        anterior = actual;
+        actual = "menu";
+
+        JPanel menu = new JPanel();
+        menu.setSize(520,60);
+        menu.setLocation(30,20);
+        JLabel bienvenido = new JLabel("Hola ");
+        bienvenido.setFont(new Font("Arial", Font.BOLD, 24));
+        bienvenido.setLocation(0,0);
+        menu.setBackground(Color.decode("#7cd6ab"));
+
+        JMenuBar menuBar = new JMenuBar();
+        JMenu cuenta = new JMenu("Cuenta");
+        JMenu usuarios = new JMenu("Usuarios");
+        JMenu ayuda = new JMenu("Ayuda");
+        menuBar.add(cuenta);
+        menuBar.add(usuarios);
+        menuBar.add(ayuda);
+
+        JMenuItem micuenta = new JMenuItem("Mi cuenta");
+        JMenuItem cerrasesi = new JMenuItem("Cerrar sesión");
+        cuenta.add(cerrasesi);
+        cuenta.add(micuenta);
+
+        JMenuItem listausu = new JMenuItem("Lista de usuarios");
+        JMenuItem crearusu = new JMenuItem("Crear Usuario");
+        usuarios.add(listausu);
+        usuarios.add(crearusu);
+
+        JMenuItem comocrear = new JMenuItem("¿Como crear usuarios?");
+        ayuda.add(comocrear);
+
+        this.setJMenuBar(menuBar);
+
+        cerrasesi.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int op = JOptionPane.showConfirmDialog(null, "¿Desea cerrar sesión?", "Cerrar sesión",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+
+                if(op==JOptionPane.YES_OPTION) {
+                    setJMenuBar(null);
+                    anterior = actual;
+                    actual = "login";
+                    limpiarVentana();
+
+                    repaint();
+                    revalidate();
+                }
+
+            }
+
+        });
+
+        micuenta.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                anterior = actual;
+                actual = "micuenta";
+                limpiarVentana();
+            }
+
+        });
+
+        crearusu.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                anterior = actual;
+                actual = "crearcuenta";
+                limpiarVentana();
+
+            }
+        });
+
+
+
+        listausu.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                anterior = actual;
+                actual = "listaUsers";
+                limpiarVentana();
+            }
+
+        });
+
+        comocrear.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                anterior = actual;
+                actual = "ayuda";
+                limpiarVentana();
+
+                repaint();
+                revalidate();
+            }
+        });
+        return menu;
+
+    }
+
+
+
 
     public JPanel miCuenta(){
         anterior = actual;
@@ -567,19 +577,19 @@ public class Ventana extends JFrame {//hola
         bienTabla.setLocation(100,60);
         bienTabla.setForeground(Color.decode("#dcca8a"));
         listaUsuarios.add(bienTabla);
-        
+
         JLabel editar = new JLabel("Editar",JLabel.CENTER);
         editar.setFont(new Font("Arial",Font.BOLD,20));
         editar.setSize(300,80);
         editar.setLocation(100,120);
         editar.setForeground(Color.decode("#dcca8a"));
         listaUsuarios.add(editar);
-        
+
         JComboBox seleccionar = new JComboBox();
         seleccionar.setSize(150,40);
         seleccionar.setLocation(100,160);
         listaUsuarios.add(seleccionar);
-        
+
         JButton editarUser = new JButton("Editar");
         editarUser.setSize(150,30);
         editarUser.setLocation(175,250);
@@ -606,7 +616,7 @@ public class Ventana extends JFrame {//hola
         JTable tabla = new JTable(dtm);
         tabla.setVisible(true);
         listaUsuarios.add(tabla);
-        
+
         JScrollPane pane = new JScrollPane(tabla);
         pane.setLocation(100,500);
         pane.setSize(260,200);
@@ -619,30 +629,30 @@ public class Ventana extends JFrame {//hola
             public void actionPerformed(ActionEvent e) {
                 tabla.setVisible(true);
                 pane.setVisible(true);
-                
+
             }
 
         });
         return listaUsuarios;
 
     }
-    
+
     public JPanel ayuda() {
-    	anterior = actual;
+        anterior = actual;
         actual = "ayuda";
-        
-    	JPanel ayuda = new JPanel();
-    	ayuda.setSize(600, 700);
-    	ayuda.setLocation(0, 0);
-    	ayuda.setLayout(null);
-    	ayuda.setBackground(Color.decode("#A5F2DA"));
-    	
-    	JLabel comocrea = new JLabel("¿Como crear un usuario?");
+
+        JPanel ayuda = new JPanel();
+        ayuda.setSize(600, 700);
+        ayuda.setLocation(0, 0);
+        ayuda.setLayout(null);
+        ayuda.setBackground(Color.decode("#A5F2DA"));
+
+        JLabel comocrea = new JLabel("¿Como crear un usuario?");
         comocrea.setFont(new Font("Arial", Font.BOLD, 18));
         comocrea.setLocation(100,100);
         comocrea.setSize(300,30);
         ayuda.add(comocrea);
-        
+
         JTextArea instrucciones = new JTextArea("1. Hacer click en la opción 'Usuarios' en\n" +
                 "el menú superior.\n"+
                 "2. Hacer click en la opción 'Crear Usuario'\n"+
@@ -660,15 +670,15 @@ public class Ventana extends JFrame {//hola
         instrucciones.setSize(300,200);
         instrucciones.setFont(new Font("Arial", Font.BOLD, 15));
         ayuda.add(instrucciones);
-        
+
         JButton crear = new JButton("Crear un usuario ahora");
         crear.setSize(150,30);
         crear.setLocation(250,500);
         crear.setBackground(Color.decode("#ecd47f"));
         ayuda.add(crear);
-    	
-    	return ayuda;
-    	
+
+        return ayuda;
+
     }
 
 
