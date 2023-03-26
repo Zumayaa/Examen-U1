@@ -220,6 +220,23 @@ public class Ventana extends JFrame {//hola
         acceder.setLocation(175,300);
         acceder.setBackground(Color.decode("#ecd47f"));
         loginPanel.add(acceder);
+        
+        JButton cancelarBorrar = new JButton("Cancelar");
+        cancelarBorrar.setSize(150,30);
+        cancelarBorrar.setLocation(100,300);
+        cancelarBorrar.setBackground(Color.decode("#FF0000"));
+        loginPanel.add(cancelarBorrar);
+        
+        cancelarBorrar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				username.setText("");
+				contrasena.setText("");
+				
+			}
+        	
+        });
 
         acceder.addActionListener(new ActionListener() {
 
@@ -620,7 +637,7 @@ public class Ventana extends JFrame {//hola
 							de.printStackTrace();
 						}
 					}else {
-						JOptionPane.showMessageDialog(null, "Tas ciego","Las contraseñas no coinciden",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Las contraseñas no han coincidido","Mal",JOptionPane.WARNING_MESSAGE);
 						contrasenaRegistrar.setText("");
 						contrasenaConfirmar.setText("");
 					}
