@@ -521,7 +521,6 @@ public class Ventana extends JFrame {//hola
         contraseñaConfirmar.setLocation(125,380);
         crearCuenta.add(contraseñaConfirmar);
 
-
         JButton accederRegistrar = new JButton("Actualizar datos");
         accederRegistrar.setSize(150,30);
         accederRegistrar.setLocation(250,500);
@@ -568,10 +567,28 @@ public class Ventana extends JFrame {//hola
         bienTabla.setLocation(100,60);
         bienTabla.setForeground(Color.decode("#dcca8a"));
         listaUsuarios.add(bienTabla);
+        
+        JLabel editar = new JLabel("Editar",JLabel.CENTER);
+        editar.setFont(new Font("Arial",Font.BOLD,20));
+        editar.setSize(300,80);
+        editar.setLocation(100,120);
+        editar.setForeground(Color.decode("#dcca8a"));
+        listaUsuarios.add(editar);
+        
+        JComboBox seleccionar = new JComboBox();
+        seleccionar.setSize(150,40);
+        seleccionar.setLocation(100,160);
+        listaUsuarios.add(seleccionar);
+        
+        JButton editarUser = new JButton("Editar");
+        editarUser.setSize(150,30);
+        editarUser.setLocation(175,250);
+        editarUser.setBackground(Color.decode("#FF0000"));
+        listaUsuarios.add(editarUser);
 
         JButton abrirTabla = new JButton("Mostrar datos");
         abrirTabla.setSize(150,30);
-        abrirTabla.setLocation(175,300);
+        abrirTabla.setLocation(175,370);
         abrirTabla.setBackground(Color.decode("#ecd47f"));
         listaUsuarios.add(abrirTabla);
 
@@ -587,16 +604,22 @@ public class Ventana extends JFrame {//hola
 
         DefaultTableModel dtm = new DefaultTableModel(data,columnas);
         JTable tabla = new JTable(dtm);
-        tabla.setLocation(100,200);
-        tabla.setSize(260,200);
-        tabla.setVisible(false);
+        tabla.setVisible(true);
         listaUsuarios.add(tabla);
+        
+        JScrollPane pane = new JScrollPane(tabla);
+        pane.setLocation(100,500);
+        pane.setSize(260,200);
+        pane.setVisible(true);
+        listaUsuarios.add(pane);
 
         abrirTabla.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 tabla.setVisible(true);
+                pane.setVisible(true);
+                
             }
 
         });
@@ -637,6 +660,12 @@ public class Ventana extends JFrame {//hola
         instrucciones.setSize(300,200);
         instrucciones.setFont(new Font("Arial", Font.BOLD, 15));
         ayuda.add(instrucciones);
+        
+        JButton crear = new JButton("Crear un usuario ahora");
+        crear.setSize(150,30);
+        crear.setLocation(250,500);
+        crear.setBackground(Color.decode("#ecd47f"));
+        ayuda.add(crear);
     	
     	return ayuda;
     	
