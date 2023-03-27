@@ -255,7 +255,7 @@ public class Ventana extends JFrame {//hola
 
         JButton acceder = new JButton("Acceder");
         acceder.setSize(150,30);
-        acceder.setLocation(175,300);
+        acceder.setLocation(250,300);
         acceder.setBackground(Color.decode("#ecd47f"));
         loginPanel.add(acceder);
         
@@ -838,22 +838,29 @@ public class Ventana extends JFrame {//hola
             seleccionar.removeAllItems();
 
 
-            File file = new File("src\\users.txt");
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                String line;
+        File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                String[] parts = linea.split(",");
+                seleccionar.addItem(parts[0]);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-                while ((line = reader.readLine()) != null) {
-                    String[] parts = line.split(",");
-                    seleccionar.addItem(parts[0]);
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
+        seleccionar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String seleccionado = (String) seleccionar.getSelectedItem();
+                editarUser.setText("Editar " + seleccionado);
 
 
             }
 
-            editarUser.addActionListener(new ActionListener() {
+        });
+
+
+        editarUser.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
