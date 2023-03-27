@@ -146,6 +146,7 @@ public class Ventana extends JFrame {//hola
         JProgressBar barra = new JProgressBar(0,100);
         barra.setSize(700,20);
         barra.setLocation(0,641);
+        barra.setForeground(Color.decode("#00C808"));
         cargaPanel.add(barra);
 
         JButton iniciar = new JButton("Iniciar sesión");
@@ -204,7 +205,15 @@ public class Ventana extends JFrame {//hola
         loginPanel.setSize(600, 700);
         loginPanel.setLocation(0, 0);
         loginPanel.setLayout(null);
-        loginPanel.setBackground(Color.decode("#A5F2DA"));
+        loginPanel.setBackground(Color.decode("#95E799"));
+        
+        JLabel imagen = new JLabel();
+        imagen.setSize(100,100);
+        ImageIcon imag = new ImageIcon("cactus-logo.png");
+        Icon icono = new ImageIcon (imag.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
+        imagen.setIcon(icono);
+        imagen.setLocation(250,460);
+        loginPanel.add(imagen);
 
         JLabel account = new JLabel("Mi cuenta",JLabel.CENTER);
         account.setFont(new Font("Arial",Font.BOLD,20));
@@ -829,7 +838,7 @@ public class Ventana extends JFrame {//hola
             seleccionar.removeAllItems();
 
 
-            File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
+            File file = new File("src\\users.txt");
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
 
@@ -838,16 +847,11 @@ public class Ventana extends JFrame {//hola
                     seleccionar.addItem(parts[0]);
                 }
 
-
-
             } catch (IOException e) {
                 e.printStackTrace();
 
 
             }
-
-
-
 
             editarUser.addActionListener(new ActionListener() {
 
