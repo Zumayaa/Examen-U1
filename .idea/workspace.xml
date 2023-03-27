@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a42e13a9-ae6c-406a-81ed-4c225c6a7dc9" name="Changes" comment="Añadir la primera parte del mensaje de bienvenida, y reorganizar los paneles de menu y login" />
+    <list default="true" id="a42e13a9-ae6c-406a-81ed-4c225c6a7dc9" name="Changes" comment="Añadir el mensaje de bienvenida junto al nombre del usuario">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679808194922</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Añadir el mensaje de bienvenida junto al nombre del usuario">
+      <created>1679811237191</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1679811237191</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -100,6 +109,7 @@
     <MESSAGE value="Añadir el panel de opciones para crear nuevos usuarios, y confirmacion de contraseña" />
     <MESSAGE value="Cambiar la direccion del filereader" />
     <MESSAGE value="Añadir la primera parte del mensaje de bienvenida, y reorganizar los paneles de menu y login" />
-    <option name="LAST_COMMIT_MESSAGE" value="Añadir la primera parte del mensaje de bienvenida, y reorganizar los paneles de menu y login" />
+    <MESSAGE value="Añadir el mensaje de bienvenida junto al nombre del usuario" />
+    <option name="LAST_COMMIT_MESSAGE" value="Añadir el mensaje de bienvenida junto al nombre del usuario" />
   </component>
 </project>
