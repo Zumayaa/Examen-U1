@@ -832,9 +832,12 @@ public class Ventana extends JFrame {//hola
             File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
+
                 while ((line = reader.readLine()) != null) {
-                    seleccionar.addItem(line);
+                    String[] parts = line.split(",");
+                    seleccionar.addItem(parts[0]);
                 }
+
 
 
             } catch (IOException e) {
@@ -842,6 +845,8 @@ public class Ventana extends JFrame {//hola
 
 
             }
+
+
 
 
             editarUser.addActionListener(new ActionListener() {
