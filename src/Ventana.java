@@ -26,11 +26,15 @@ public class Ventana extends JFrame {//hola
 
         this.setVisible(true);
         this.setSize(600,700);
-        this.setTitle("Sistema");
+        this.setTitle("Cactu's Corporation");
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.decode("#CAE9DA"));
         this.setLayout(null);
+        
+        ImageIcon logoEmpresa = new ImageIcon("cactus-company.png");
+        this.setIconImage(logoEmpresa.getImage());
+        
 
         limpiarVentana();
 
