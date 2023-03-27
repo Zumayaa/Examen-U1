@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a42e13a9-ae6c-406a-81ed-4c225c6a7dc9" name="Changes" comment="El combobox añada los contenidos del .txt">
+    <list default="true" id="a42e13a9-ae6c-406a-81ed-4c225c6a7dc9" name="Changes" comment="El combobox añada solo el nombre de cada linea del .txt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679877438670</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="El combobox añada solo el nombre de cada linea del .txt">
+      <created>1679878240073</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1679878240073</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -118,6 +125,7 @@
     <MESSAGE value="Añadir la primera parte del mensaje de bienvenida, y reorganizar los paneles de menu y login" />
     <MESSAGE value="Añadir el mensaje de bienvenida junto al nombre del usuario" />
     <MESSAGE value="El combobox añada los contenidos del .txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="El combobox añada los contenidos del .txt" />
+    <MESSAGE value="El combobox añada solo el nombre de cada linea del .txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="El combobox añada solo el nombre de cada linea del .txt" />
   </component>
 </project>

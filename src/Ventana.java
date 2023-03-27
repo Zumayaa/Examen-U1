@@ -20,8 +20,8 @@ public class Ventana extends JFrame {//hola
 
     private String bienvenidonombre;
     private JComboBox<String> seleccionar = new JComboBox<String>();
-    
-    
+
+
     public Ventana(){
 
         this.setVisible(true);
@@ -81,7 +81,7 @@ public class Ventana extends JFrame {//hola
             this.repaint();
             this.revalidate();
         }
-        
+
         if(actual.equals("editarCuenta")){
             panel = editarCuenta();
 
@@ -135,7 +135,7 @@ public class Ventana extends JFrame {//hola
         bienvenido.setLocation(50,550);
         bienvenido.setForeground(Color.decode("#0C7F11"));
         cargaPanel.add(bienvenido);
-        
+
         JLabel cactus = new JLabel("Cactu's Corporation",JLabel.CENTER);
         cactus.setFont(new Font("Dialog",Font.BOLD,35));
         cactus.setSize(500,100);
@@ -157,9 +157,9 @@ public class Ventana extends JFrame {//hola
         iniciar.setBorder(null);
         iniciar.setFont(new Font("Arial", Font.BOLD, 20));
         cargaPanel.add(iniciar);
-        
+
         this.add(cargaPanel);
-        
+
         JLabel imagen = new JLabel();
         imagen.setSize(100,100);
         ImageIcon imag = new ImageIcon("cactus-logo.png");
@@ -246,25 +246,25 @@ public class Ventana extends JFrame {//hola
 
         JButton acceder = new JButton("Acceder");
         acceder.setSize(150,30);
-        acceder.setLocation(175,300);
+        acceder.setLocation(250,300);
         acceder.setBackground(Color.decode("#ecd47f"));
         loginPanel.add(acceder);
-        
+
         JButton cancelarBorrar = new JButton("Cancelar");
         cancelarBorrar.setSize(150,30);
         cancelarBorrar.setLocation(100,300);
         cancelarBorrar.setBackground(Color.decode("#FF0000"));
         loginPanel.add(cancelarBorrar);
-        
+
         cancelarBorrar.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				username.setText("");
-				contrasena.setText("");
-				
-			}
-        	
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                username.setText("");
+                contrasena.setText("");
+
+            }
+
         });
 
         acceder.addActionListener(new ActionListener() {
@@ -279,7 +279,7 @@ public class Ventana extends JFrame {//hola
 
                 try{
                     //  FileReader file = new FileReader("src\\users.txt");
-                    FileReader file = new FileReader("src\\users.txt");
+                    FileReader file = new FileReader("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
                     reader = new BufferedReader(file);
                     String line = reader.readLine();
 
@@ -490,17 +490,17 @@ public class Ventana extends JFrame {//hola
         accederRegistrar.setLocation(250,500);
         accederRegistrar.setBackground(Color.decode("#ecd47f"));
         miCuenta.add(accederRegistrar);
-        
+
         accederRegistrar.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-			}
-			
-        	
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+
+
+            }
+
+
         });
 
         JButton cancelar = new JButton("Cancelar");
@@ -526,7 +526,7 @@ public class Ventana extends JFrame {//hola
 
         return miCuenta;
     }
-    
+
     public JPanel editarCuenta(){
         anterior = actual;
         actual = "editarCuenta";
@@ -711,65 +711,65 @@ public class Ventana extends JFrame {//hola
             }
 
         });
-        
+
         accederRegistrar.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String name = nombreRegistrar.getText();
-				String apellido = apeRegistrar.getText();
-				String email = correoRegistrar.getText();
-				String pwd = (new String(contrasenaRegistrar.getPassword()));
-				String pwdCopy = (new String(contrasenaConfirmar.getPassword()));
-				FileWriter writer;
-				PrintWriter linea;
-				
-				if(name.length() == 0 || apellido.length() == 0 || email.length() == 0 || pwd.length() == 0 || pwdCopy.length() == 0) {
-					JOptionPane.showMessageDialog(null, "No has ingresado uno o más valores","Mal",JOptionPane.WARNING_MESSAGE);
-					nombreRegistrar.setText("");
-					apeRegistrar.setText("");
-					correoRegistrar.setText("");
-					contrasenaRegistrar.setText("");
-					contrasenaConfirmar.setText("");
-				}else {
-					if(pwd.equals(pwdCopy)) {
-						try {
-							writer = new FileWriter("src\\users.txt",true);
-							linea = new PrintWriter(writer);
-							
-							linea.println(name + "," + apellido + "," + email + "," + pwd);
-							linea.close();
-							writer.close();
-							
-							int op = JOptionPane.showConfirmDialog(null, "Creado exitosamente, ¿Desea crear otro usuario?", "Éxito",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-							
-							if(op == JOptionPane.YES_OPTION) {
-								nombreRegistrar.setText("");
-								apeRegistrar.setText("");
-								correoRegistrar.setText("");
-								contrasenaRegistrar.setText("");
-								contrasenaConfirmar.setText("");
-							}else {
-								anterior = actual;
-				                actual = "menu";
-				                limpiarVentana();
-				                JOptionPane.showMessageDialog(null, "Fue reedirigido al menú", "Usted no quiere crear otro usuario",JOptionPane.INFORMATION_MESSAGE);
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = nombreRegistrar.getText();
+                String apellido = apeRegistrar.getText();
+                String email = correoRegistrar.getText();
+                String pwd = (new String(contrasenaRegistrar.getPassword()));
+                String pwdCopy = (new String(contrasenaConfirmar.getPassword()));
+                FileWriter writer;
+                PrintWriter linea;
 
-				                repaint();
-				                revalidate();
-							}
-						}catch(IOException de){
-							de.printStackTrace();
-						}
-					}else {
-						JOptionPane.showMessageDialog(null, "Las contraseñas no han coincidido","Mal",JOptionPane.WARNING_MESSAGE);
-						contrasenaRegistrar.setText("");
-						contrasenaConfirmar.setText("");
-					}
-				}
-			}
-			
-		});
+                if(name.length() == 0 || apellido.length() == 0 || email.length() == 0 || pwd.length() == 0 || pwdCopy.length() == 0) {
+                    JOptionPane.showMessageDialog(null, "No has ingresado uno o más valores","Mal",JOptionPane.WARNING_MESSAGE);
+                    nombreRegistrar.setText("");
+                    apeRegistrar.setText("");
+                    correoRegistrar.setText("");
+                    contrasenaRegistrar.setText("");
+                    contrasenaConfirmar.setText("");
+                }else {
+                    if(pwd.equals(pwdCopy)) {
+                        try {
+                            writer = new FileWriter("src\\users.txt",true);
+                            linea = new PrintWriter(writer);
+
+                            linea.println(name + "," + apellido + "," + email + "," + pwd);
+                            linea.close();
+                            writer.close();
+
+                            int op = JOptionPane.showConfirmDialog(null, "Creado exitosamente, ¿Desea crear otro usuario?", "Éxito",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+
+                            if(op == JOptionPane.YES_OPTION) {
+                                nombreRegistrar.setText("");
+                                apeRegistrar.setText("");
+                                correoRegistrar.setText("");
+                                contrasenaRegistrar.setText("");
+                                contrasenaConfirmar.setText("");
+                            }else {
+                                anterior = actual;
+                                actual = "menu";
+                                limpiarVentana();
+                                JOptionPane.showMessageDialog(null, "Fue reedirigido al menú", "Usted no quiere crear otro usuario",JOptionPane.INFORMATION_MESSAGE);
+
+                                repaint();
+                                revalidate();
+                            }
+                        }catch(IOException de){
+                            de.printStackTrace();
+                        }
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Las contraseñas no han coincidido","Mal",JOptionPane.WARNING_MESSAGE);
+                        contrasenaRegistrar.setText("");
+                        contrasenaConfirmar.setText("");
+                    }
+                }
+            }
+
+        });
         return crearCuenta;
     }
 
@@ -815,7 +815,7 @@ public class Ventana extends JFrame {//hola
         tabla.setSize(260,200);
         tabla.setVisible(false);
         listaUsuarios.add(tabla);
-        
+
         JScrollPane scrollPane = new JScrollPane(tabla);
         scrollPane.setLocation(50,400);
         scrollPane.setSize(400,300);
@@ -823,78 +823,86 @@ public class Ventana extends JFrame {//hola
         listaUsuarios.add(scrollPane);
 
 
-            seleccionar.setSize(150,40);
-            seleccionar.setLocation(100,160);
-            listaUsuarios.add(seleccionar);
-            seleccionar.removeAllItems();
+        seleccionar.setSize(150,40);
+        seleccionar.setLocation(100,160);
+        listaUsuarios.add(seleccionar);
+        seleccionar.removeAllItems();
 
 
-            File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                String line;
+        File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String linea;
 
-                while ((line = reader.readLine()) != null) {
-                    String[] parts = line.split(",");
-                    seleccionar.addItem(parts[0]);
-                }
+            while ((linea = reader.readLine()) != null) {
+                String[] parts = linea.split(",");
+                seleccionar.addItem(parts[0]);
+            }
 
 
+        } catch (IOException e) {
+            e.printStackTrace();
 
-            } catch (IOException e) {
-                e.printStackTrace();
+
+        }
+
+        seleccionar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String seleccionado = (String) seleccionar.getSelectedItem();
+                editarUser.setText("Editar " + seleccionado);
 
 
             }
 
-
-
-
-            editarUser.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				anterior = actual;
-				actual = "editarCuenta";
-                limpiarVentana();
-			}
-        	
         });
 
-		abrirTabla.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				File file = new File("src\\users.txt");
-				BufferedReader bufer;
-	
-				try {
-					bufer = new BufferedReader(new FileReader(file));
-					String[] columnas = {"Nombre", "Apellidos", "Correo", "Contraseña", "Acción"};
-						
-					DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
-					modelo.setColumnIdentifiers(columnas);
-						
-					modelo.setRowCount(0);
-						
-					Object[] datosEnLinea = bufer.lines().toArray();
-						
-					for(int i = 0; i<datosEnLinea.length; i++) {
-						String linea = datosEnLinea[i].toString().trim();
-						String [] data = linea.split(",");
-						modelo.addRow(data);
-						
-					}	
-					tabla.setVisible(true);
-					scrollPane.setVisible(true);
-					repaint();
-					revalidate();
-						
-				}catch (Exception er) {
-					er.printStackTrace();
-				}
-				
-			}
-			
-		});
+
+
+        editarUser.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                anterior = actual;
+                actual = "editarCuenta";
+                limpiarVentana();
+            }
+
+        });
+
+        abrirTabla.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                File file = new File("src\\users.txt");
+                BufferedReader bufer;
+
+                try {
+                    bufer = new BufferedReader(new FileReader(file));
+                    String[] columnas = {"Nombre", "Apellidos", "Correo", "Contraseña", "Acción"};
+
+                    DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+                    modelo.setColumnIdentifiers(columnas);
+
+                    modelo.setRowCount(0);
+
+                    Object[] datosEnLinea = bufer.lines().toArray();
+
+                    for(int i = 0; i<datosEnLinea.length; i++) {
+                        String linea = datosEnLinea[i].toString().trim();
+                        String [] data = linea.split(",");
+                        modelo.addRow(data);
+
+                    }
+                    tabla.setVisible(true);
+                    scrollPane.setVisible(true);
+                    repaint();
+                    revalidate();
+
+                }catch (Exception er) {
+                    er.printStackTrace();
+                }
+
+            }
+
+        });
 
 
         return listaUsuarios;
@@ -940,20 +948,20 @@ public class Ventana extends JFrame {//hola
         crear.setLocation(250,500);
         crear.setBackground(Color.decode("#ecd47f"));
         ayuda.add(crear);
-        
+
         crear.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				anterior = actual;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                anterior = actual;
                 actual = "crearcuenta";
                 limpiarVentana();
 
                 repaint();
                 revalidate();
-				
-			}
-        	
+
+            }
+
         });
 
         return ayuda;
