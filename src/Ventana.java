@@ -618,7 +618,7 @@ public class Ventana extends JFrame {//hola
         ImageIcon imag2 = new ImageIcon("cactus-logo.png");
         Icon icono2 = new ImageIcon (imag2.getImage().getScaledInstance(imagen2.getWidth(), imagen2.getHeight(), Image.SCALE_DEFAULT));
         imagen2.setIcon(icono2);
-        imagen2.setLocation(278,595);
+        imagen2.setLocation(270,595);
         miCuenta.add(imagen2);
 
         JLabel nameRegistrar = new JLabel("Ingresa tu nombre",JLabel.CENTER);
@@ -884,32 +884,54 @@ public class Ventana extends JFrame {//hola
         listaUsuarios.setSize(600, 700);
         listaUsuarios.setLocation(0, 0);
         listaUsuarios.setLayout(null);
-        listaUsuarios.setBackground(Color.decode("#A5F2DA"));
+        listaUsuarios.setBackground(Color.decode("#95E799"));
 
-        JLabel bienTabla = new JLabel("Bienvenido",JLabel.CENTER);
-        bienTabla.setFont(new Font("Arial",Font.BOLD,30));
-        bienTabla.setSize(300,80);
-        bienTabla.setLocation(100,60);
-        bienTabla.setForeground(Color.decode("#dcca8a"));
-        listaUsuarios.add(bienTabla);
+        JLabel list = new JLabel("Lista de usuarios");
+        list.setFont(new Font("Arial", Font.BOLD, 30));
+        list.setLocation(160,30);
+        list.setSize(400,40);
+        list.setForeground(Color.decode("#005F04"));
+        listaUsuarios.add(list);
+        
+        JLabel imagen = new JLabel();
+        imagen.setSize(80,80);
+        ImageIcon imag = new ImageIcon("cactus-table.png");
+        Icon icono = new ImageIcon (imag.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
+        imagen.setIcon(icono);
+        imagen.setLocation(240,70);
+        listaUsuarios.add(imagen);
+        
+        JLabel imagen2 = new JLabel();
+        imagen2.setSize(40,40);
+        ImageIcon imag2 = new ImageIcon("cactus-logo.png");
+        Icon icono2 = new ImageIcon (imag2.getImage().getScaledInstance(imagen2.getWidth(), imagen2.getHeight(), Image.SCALE_DEFAULT));
+        imagen2.setIcon(icono2);
+        imagen2.setLocation(260,593);
+        listaUsuarios.add(imagen2);
 
         JLabel editar = new JLabel("Editar",JLabel.CENTER);
-        editar.setFont(new Font("Arial",Font.BOLD,20));
-        editar.setSize(300,80);
-        editar.setLocation(100,120);
-        editar.setForeground(Color.decode("#dcca8a"));
+        editar.setFont(new Font("Arial",Font.BOLD,15));
+        editar.setSize(100,80);
+        editar.setLocation(60,110);
+        editar.setForeground(Color.decode("#005F04"));
         listaUsuarios.add(editar);
 
         JButton editarUser = new JButton("Editar");
-        editarUser.setSize(150,30);
-        editarUser.setLocation(175,250);
-        editarUser.setBackground(Color.decode("#FF0000"));
+        editarUser.setSize(400,30);
+        editarUser.setLocation(85,210);
+        editarUser.setBackground(Color.decode("#005F04"));
+        editarUser.setForeground(Color.white);
+        editarUser.setBorder(null);
+        editarUser.setFont(new Font("Arial", Font.BOLD, 20));
         listaUsuarios.add(editarUser);
 
         JButton abrirTabla = new JButton("Mostrar datos");
         abrirTabla.setSize(150,30);
-        abrirTabla.setLocation(175,370);
-        abrirTabla.setBackground(Color.decode("#ecd47f"));
+        abrirTabla.setLocation(205,250);
+        abrirTabla.setBackground(Color.decode("#009407"));
+        abrirTabla.setForeground(Color.white);
+        abrirTabla.setBorder(null);
+        abrirTabla.setFont(new Font("Arial", Font.BOLD, 20));
         listaUsuarios.add(abrirTabla);
 
         JTable tabla = new JTable();
@@ -919,14 +941,14 @@ public class Ventana extends JFrame {//hola
         listaUsuarios.add(tabla);
         
         JScrollPane scrollPane = new JScrollPane(tabla);
-        scrollPane.setLocation(50,400);
+        scrollPane.setLocation(85,290);
         scrollPane.setSize(400,300);
         scrollPane.setVisible(false);
         listaUsuarios.add(scrollPane);
 
 
-            seleccionar.setSize(150,40);
-            seleccionar.setLocation(100,160);
+            seleccionar.setSize(400,40);
+            seleccionar.setLocation(85,160);
             listaUsuarios.add(seleccionar);
             seleccionar.removeAllItems();
 
