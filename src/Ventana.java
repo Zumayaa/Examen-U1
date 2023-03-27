@@ -16,7 +16,7 @@ public class Ventana extends JFrame {//hola
     public JPanel panel = null;
 
     private String anterior = "cargaPantalla";
-    private String actual = "editarCuenta";
+    private String actual = "cargaPantalla";
 
     private String bienvenidonombre;
     private JComboBox<String> seleccionar = new JComboBox<String>();
@@ -618,7 +618,7 @@ public class Ventana extends JFrame {//hola
         ImageIcon imag2 = new ImageIcon("cactus-logo.png");
         Icon icono2 = new ImageIcon (imag2.getImage().getScaledInstance(imagen2.getWidth(), imagen2.getHeight(), Image.SCALE_DEFAULT));
         imagen2.setIcon(icono2);
-        imagen2.setLocation(278,610);
+        imagen2.setLocation(278,595);
         miCuenta.add(imagen2);
 
         JLabel nameRegistrar = new JLabel("Ingresa tu nombre",JLabel.CENTER);
@@ -683,7 +683,7 @@ public class Ventana extends JFrame {//hola
 
         JButton accederRegistrar = new JButton("Actualizar datos");
         accederRegistrar.setSize(180,30);
-        accederRegistrar.setLocation(200,520);
+        accederRegistrar.setLocation(200,515);
         accederRegistrar.setBackground(Color.decode("#005F04"));
         accederRegistrar.setForeground(Color.white);
         accederRegistrar.setBorder(null);
@@ -692,7 +692,7 @@ public class Ventana extends JFrame {//hola
 
         JButton cancelar = new JButton("Cancelar");
         cancelar.setSize(150,30);
-        cancelar.setLocation(215,565);
+        cancelar.setLocation(215,555);
         cancelar.setBackground(Color.decode("#E32636"));
         cancelar.setForeground(Color.white);
         cancelar.setBorder(null);
