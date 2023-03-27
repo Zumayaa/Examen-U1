@@ -16,7 +16,7 @@ public class Ventana extends JFrame {//hola
     public JPanel panel = null;
 
     private String anterior = "cargaPantalla";
-    private String actual = "login";
+    private String actual = "cargaPantalla";
 
     private String bienvenidonombre;
     private JComboBox<String> seleccionar = new JComboBox<String>();
@@ -132,7 +132,7 @@ public class Ventana extends JFrame {//hola
         JLabel bienvenido = new JLabel("Powered by Ramses & Zumaya",JLabel.CENTER);
         bienvenido.setFont(new Font("Arial",Font.BOLD,15));
         bienvenido.setSize(500,100);
-        bienvenido.setLocation(50,550);
+        bienvenido.setLocation(40,550);
         bienvenido.setForeground(Color.decode("#0C7F11"));
         cargaPanel.add(bienvenido);
         
@@ -166,7 +166,7 @@ public class Ventana extends JFrame {//hola
         ImageIcon imag = new ImageIcon("cactus-logo.png");
         Icon icono = new ImageIcon (imag.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
         imagen.setIcon(icono);
-        imagen.setLocation(250,460);
+        imagen.setLocation(240,460);
         cargaPanel.add(imagen);
 
         try {
@@ -337,16 +337,33 @@ public class Ventana extends JFrame {//hola
         actual = "menu";
 
         JPanel menu = new JPanel();
-        menu.setSize(520,60);
-        menu.setLocation(30,20);
-        JLabel bienvenido = new JLabel("Hola " + bienvenidonombre);
-        bienvenido.setFont(new Font("Arial", Font.BOLD, 24));
-        bienvenido.setLocation(0,0);
-        menu.setBackground(Color.decode("#7cd6ab"));
-
+        menu.setSize(600,700);
+        menu.setLocation(0,0);
+        menu.setLayout(null);
+        menu.setBackground(Color.decode("#95E799"));
+        
+        JLabel bienvenido = new JLabel("Bienvenido " + bienvenidonombre + "!");
+        bienvenido.setSize(400,30);
+        bienvenido.setFont(new Font("Arial", Font.BOLD, 30));
+        bienvenido.setForeground(Color.decode("#005F04"));
+        bienvenido.setLocation(160,50);
         menu.add(bienvenido);
 
-        this.add(menu);
+        JLabel imagen = new JLabel();
+        imagen.setSize(180,180);
+        ImageIcon imag = new ImageIcon("cactus-welcome.png");
+        Icon icono = new ImageIcon (imag.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
+        imagen.setIcon(icono);
+        imagen.setLocation(190,150);
+        menu.add(imagen);
+        
+        JLabel imagen2 = new JLabel();
+        imagen2.setSize(90,90);
+        ImageIcon imag2 = new ImageIcon("cactus-logo.png");
+        Icon icono2 = new ImageIcon (imag2.getImage().getScaledInstance(imagen2.getWidth(), imagen2.getHeight(), Image.SCALE_DEFAULT));
+        imagen2.setIcon(icono2);
+        imagen2.setLocation(235,500);
+        menu.add(imagen2);
 
         JMenuBar menuBar = new JMenuBar();
         JMenu cuenta = new JMenu("Cuenta");
