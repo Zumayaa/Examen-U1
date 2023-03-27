@@ -821,8 +821,35 @@ public class Ventana extends JFrame {//hola
         scrollPane.setSize(400,300);
         scrollPane.setVisible(false);
         listaUsuarios.add(scrollPane);
-        
-        editarUser.addActionListener(new ActionListener() {
+
+
+            seleccionar.setSize(150,40);
+            seleccionar.setLocation(100,160);
+            listaUsuarios.add(seleccionar);
+            seleccionar.removeAllItems();
+
+
+            File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                String line;
+
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(",");
+                    seleccionar.addItem(parts[0]);
+                }
+
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+
+
+            }
+
+
+
+
+            editarUser.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -868,11 +895,8 @@ public class Ventana extends JFrame {//hola
 			}
 			
 		});
-        
-        seleccionar.setSize(150,40);
-        seleccionar.setLocation(100,160);
-        listaUsuarios.add(seleccionar);
-        
+
+
         return listaUsuarios;
 
     }
