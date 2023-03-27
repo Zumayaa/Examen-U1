@@ -1013,36 +1013,49 @@ public class Ventana extends JFrame {//hola
         ayuda.setSize(600, 700);
         ayuda.setLocation(0, 0);
         ayuda.setLayout(null);
-        ayuda.setBackground(Color.decode("#A5F2DA"));
+        ayuda.setBackground(Color.decode("#95E799"));
 
         JLabel comocrea = new JLabel("¿Como crear un usuario?");
-        comocrea.setFont(new Font("Arial", Font.BOLD, 18));
-        comocrea.setLocation(100,100);
-        comocrea.setSize(300,30);
+        comocrea.setFont(new Font("Arial", Font.BOLD, 30));
+        comocrea.setLocation(100,20);
+        comocrea.setSize(400,40);
+        comocrea.setForeground(Color.decode("#005F04"));
         ayuda.add(comocrea);
+        
+        JLabel imagen2 = new JLabel();
+        imagen2.setSize(90,90);
+        ImageIcon imag2 = new ImageIcon("cactus-logo.png");
+        Icon icono2 = new ImageIcon (imag2.getImage().getScaledInstance(imagen2.getWidth(), imagen2.getHeight(), Image.SCALE_DEFAULT));
+        imagen2.setIcon(icono2);
+        imagen2.setLocation(245,55);
+        ayuda.add(imagen2);
 
         JTextArea instrucciones = new JTextArea("1. Hacer click en la opción 'Usuarios' en\n" +
-                "el menú superior.\n"+
+                "el menú superior.\n \n"+
                 "2. Hacer click en la opción 'Crear Usuario'\n"+
-                "en el menú desplegado.\n"+
-                "3. Llenar los campos solicitados\n"+
-                "4. Escribi una pequeña descripción de ti\n"+
-                "5. Seleccionar tu comida favorita.\n"+
-                "6. Seleccionar tu color favorito.\n"+
-                "7. Hacer click en el botón 'Crear Usuario'\n"+
+                "en el menú desplegado.\n \n"+
+                "3. Llenar los campos solicitados\n \n"+
+                "4. Escribi una pequeña descripción de ti\n \n"+
+                "5. Seleccionar tu comida favorita.\n \n"+
+                "6. Seleccionar tu color favorito.\n \n"+
+                "7. Hacer click en el botón 'Crear Usuario'\n \n"+
                 "8. Listo, el usuario se ha creado.");
         instrucciones.setEditable(false);
 
-        instrucciones.setBackground(new Color(102, 255, 204));
-        instrucciones.setLocation(100,180);
-        instrucciones.setSize(300,200);
-        instrucciones.setFont(new Font("Arial", Font.BOLD, 15));
+        instrucciones.setBackground(Color.decode("#95E799"));
+        instrucciones.setLocation(100,155);
+        instrucciones.setSize(380,400);
+        instrucciones.setFont(new Font("Arial", Font.BOLD, 18));
+        instrucciones.setForeground(Color.decode("#005F04"));
         ayuda.add(instrucciones);
 
         JButton crear = new JButton("Crear un usuario ahora");
-        crear.setSize(150,30);
-        crear.setLocation(250,500);
-        crear.setBackground(Color.decode("#ecd47f"));
+        crear.setSize(260,40);
+        crear.setLocation(150,560);
+        crear.setBackground(Color.decode("#005F04"));
+        crear.setForeground(Color.white);
+        crear.setBorder(null);
+        crear.setFont(new Font("Arial", Font.BOLD, 20));
         ayuda.add(crear);
         
         crear.addActionListener(new ActionListener() {
