@@ -20,6 +20,7 @@ public class Ventana extends JFrame {//hola
 
     private String bienvenidonombre;
     private JComboBox<String> seleccionar = new JComboBox<String>();
+    ImageIcon logoEmpresa = new ImageIcon("cactus-company.png");
     
     
     public Ventana(){
@@ -32,8 +33,7 @@ public class Ventana extends JFrame {//hola
         this.getContentPane().setBackground(Color.decode("#CAE9DA"));
         this.setLayout(null);
         
-        ImageIcon logoEmpresa = new ImageIcon("cactus-company.png");
-        this.setIconImage(logoEmpresa.getImage());
+        setIconImage(logoEmpresa.getImage());
         
 
         limpiarVentana();
