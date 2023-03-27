@@ -132,22 +132,41 @@ public class Ventana extends JFrame {//hola
         JLabel bienvenido = new JLabel("Powered by Ramses & Zumaya",JLabel.CENTER);
         bienvenido.setFont(new Font("Arial",Font.BOLD,15));
         bienvenido.setSize(500,100);
-        bienvenido.setLocation(60,350);
+        bienvenido.setLocation(50,550);
         bienvenido.setForeground(Color.decode("#0C7F11"));
         cargaPanel.add(bienvenido);
+        
+        JLabel cactus = new JLabel("Cactu's Corporation",JLabel.CENTER);
+        cactus.setFont(new Font("Dialog",Font.BOLD,35));
+        cactus.setSize(500,100);
+        cactus.setLocation(50,100);
+        cactus.setForeground(Color.decode("#0C7F11"));
+        cargaPanel.add(cactus);
 
         JProgressBar barra = new JProgressBar(0,100);
-        barra.setSize(400,100);
-        barra.setLocation(100,100);
+        barra.setSize(700,20);
+        barra.setLocation(0,641);
         cargaPanel.add(barra);
 
-        JButton iniciar = new JButton("Inicia");
-        iniciar.setSize(90,50);
-        iniciar.setLocation(250,200);
+        JButton iniciar = new JButton("Iniciar sesión");
+        iniciar.setSize(200,50);
+        iniciar.setLocation(200,200);
         iniciar.setVisible(false);
+        iniciar.setBackground(Color.decode("#005F04"));
+        iniciar.setForeground(Color.white);
+        iniciar.setBorder(null);
+        iniciar.setFont(new Font("Arial", Font.BOLD, 20));
         cargaPanel.add(iniciar);
-
+        
         this.add(cargaPanel);
+        
+        JLabel imagen = new JLabel();
+        imagen.setSize(100,100);
+        ImageIcon imag = new ImageIcon("cactus-logo.png");
+        Icon icono = new ImageIcon (imag.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
+        imagen.setIcon(icono);
+        imagen.setLocation(250,460);
+        cargaPanel.add(imagen);
 
         try {
             for(int i = 0; i<=100;i++) {
@@ -476,30 +495,11 @@ public class Ventana extends JFrame {//hola
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				/*BufferedReader reader;
-				String namePersona = nombreRegistrar.getText();
-				String apellidoPersona = apeRegistrar.getText();
 				
-				try {
-					FileReader file = new FileReader("src\\users.txt");
-                    reader = new BufferedReader(file);
-                    String line = reader.readLine();
-                    while(line != null) {
-                        String data[] = line.split(",");
-                        if(namePersona.equals(data[2])) {
-                        	System.out.println(data[0]);
-                        }else {
-                        	System.out.println(data[0]);
-                        }
-                        line = reader.readLine();
-                    }
-				}catch(Exception er){
-					
-				}
 				
 				
 			}
-			*/
+			
         	
         });
 
