@@ -16,7 +16,7 @@ public class Ventana extends JFrame {//hola
     public JPanel panel = null;
 
     private String anterior = "cargaPantalla";
-    private String actual = "micuenta";
+    private String actual = "editarCuenta";
 
     private String bienvenidonombre;
     private JComboBox<String> seleccionar = new JComboBox<String>();
@@ -346,7 +346,7 @@ public class Ventana extends JFrame {//hola
         bienvenido.setSize(400,30);
         bienvenido.setFont(new Font("Arial", Font.BOLD, 30));
         bienvenido.setForeground(Color.decode("#005F04"));
-        bienvenido.setLocation(160,50);
+        bienvenido.setLocation(170,50);
         menu.add(bienvenido);
 
         JLabel imagen = new JLabel();
@@ -489,7 +489,7 @@ public class Ventana extends JFrame {//hola
         ImageIcon imag2 = new ImageIcon("cactus-logo.png");
         Icon icono2 = new ImageIcon (imag2.getImage().getScaledInstance(imagen2.getWidth(), imagen2.getHeight(), Image.SCALE_DEFAULT));
         imagen2.setIcon(icono2);
-        imagen2.setLocation(250,550);
+        imagen2.setLocation(250,540);
         miCuenta.add(imagen2);
 
         JLabel nameRegistrar = new JLabel("Ingresa tu nombre",JLabel.CENTER);
@@ -596,66 +596,107 @@ public class Ventana extends JFrame {//hola
         miCuenta.setSize(600, 700);
         miCuenta.setLocation(0, 0);
         miCuenta.setLayout(null);
-        miCuenta.setBackground(Color.decode("#A5F2DA"));
+        miCuenta.setBackground(Color.decode("#95E799"));
+        
+        JLabel inicia = new JLabel("Editar cuenta",JLabel.CENTER);
+        inicia.setFont(new Font("Arial",Font.BOLD,35));
+        inicia.setSize(300,80);
+        inicia.setLocation(135,10);
+        inicia.setForeground(Color.decode("#005F04"));
+        miCuenta.add(inicia);
+        
+        JLabel imagen = new JLabel();
+        imagen.setSize(170,170);
+        ImageIcon imag = new ImageIcon("cactus-edit.png");
+        Icon icono = new ImageIcon (imag.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
+        imagen.setIcon(icono);
+        imagen.setLocation(197,50);
+        miCuenta.add(imagen);
+        
+        JLabel imagen2 = new JLabel();
+        imagen2.setSize(40,40);
+        ImageIcon imag2 = new ImageIcon("cactus-logo.png");
+        Icon icono2 = new ImageIcon (imag2.getImage().getScaledInstance(imagen2.getWidth(), imagen2.getHeight(), Image.SCALE_DEFAULT));
+        imagen2.setIcon(icono2);
+        imagen2.setLocation(278,610);
+        miCuenta.add(imagen2);
 
         JLabel nameRegistrar = new JLabel("Ingresa tu nombre",JLabel.CENTER);
-        nameRegistrar.setFont(new Font("Arial",Font.BOLD,12));
+        nameRegistrar.setFont(new Font("Arial",Font.BOLD,15));
         nameRegistrar.setSize(300,80);
-        nameRegistrar.setLocation(05,110);
-        nameRegistrar.setForeground(Color.white);
+        nameRegistrar.setLocation(25,165);
+        nameRegistrar.setForeground(Color.decode("#005F04"));
         miCuenta.add(nameRegistrar);
 
         JTextField nombreRegistrar = new JTextField();
-        nombreRegistrar.setSize(150,40);
-        nombreRegistrar.setLocation(100,160);
+        nombreRegistrar.setSize(200,43);
+        nombreRegistrar.setLocation(80,220);
         miCuenta.add(nombreRegistrar);
 
         JLabel apellidoRegistrar = new JLabel("Ingresa tu apellido",JLabel.CENTER);
-        apellidoRegistrar.setFont(new Font("Arial",Font.BOLD,12));
+        apellidoRegistrar.setFont(new Font("Arial",Font.BOLD,15));
         apellidoRegistrar.setSize(300,80);
-        apellidoRegistrar.setLocation(205,110);
-        apellidoRegistrar.setForeground(Color.white);
+        apellidoRegistrar.setLocation(235,165);
+        apellidoRegistrar.setForeground(Color.decode("#005F04"));
         miCuenta.add(apellidoRegistrar);
 
         JTextField apeRegistrar = new JTextField();
-        apeRegistrar.setSize(150,40);
-        apeRegistrar.setLocation(260,160);
+        apeRegistrar.setSize(200,43);
+        apeRegistrar.setLocation(290,220);
         miCuenta.add(apeRegistrar);
 
         JLabel emailRegistrar = new JLabel("Correo electrónico",JLabel.CENTER);
-        emailRegistrar.setFont(new Font("Arial",Font.BOLD,12));
-        emailRegistrar.setSize(260,80);
-        emailRegistrar.setLocation(50,190);
-        emailRegistrar.setForeground(Color.white);
+        emailRegistrar.setFont(new Font("Arial",Font.BOLD,15));
+        emailRegistrar.setSize(280,80);
+        emailRegistrar.setLocation(80,250);
+        emailRegistrar.setForeground(Color.decode("#005F04"));
         miCuenta.add(emailRegistrar);
 
         JTextField correoRegistrar = new JTextField();
-        correoRegistrar.setSize(250,40);
-        correoRegistrar.setLocation(125,240);
+        correoRegistrar.setSize(280,43);
+        correoRegistrar.setLocation(150,300);
         miCuenta.add(correoRegistrar);
 
         JLabel passRegistrar = new JLabel("Contraseña",JLabel.CENTER);
-        passRegistrar.setFont(new Font("Arial",Font.BOLD,12));
+        passRegistrar.setFont(new Font("Arial",Font.BOLD,15));
         passRegistrar.setSize(260,80);
-        passRegistrar.setLocation(30,260);
-        passRegistrar.setForeground(Color.white);
+        passRegistrar.setLocation(65,330);
+        passRegistrar.setForeground(Color.decode("#005F04"));
         miCuenta.add(passRegistrar);
 
-        JPasswordField contraseñaRegistrar = new JPasswordField();
-        contraseñaRegistrar.setSize(250,40);
-        contraseñaRegistrar.setLocation(125,310);
-        miCuenta.add(contraseñaRegistrar);
+        JPasswordField contrasenaRegistrar = new JPasswordField();
+        contrasenaRegistrar.setSize(280,43);
+        contrasenaRegistrar.setLocation(150,380);
+        miCuenta.add(contrasenaRegistrar);
+        
+        JLabel passConfirm = new JLabel("Confirmar contraseña",JLabel.CENTER);
+        passConfirm.setFont(new Font("Arial",Font.BOLD,15));
+        passConfirm.setSize(260,80);
+        passConfirm.setLocation(98,410);
+        passConfirm.setForeground(Color.decode("#005F04"));
+        miCuenta.add(passConfirm);
+        
+        JPasswordField contrasenaConfirm = new JPasswordField();
+        contrasenaConfirm.setSize(280,43);
+        contrasenaConfirm.setLocation(150,460);
+        miCuenta.add(contrasenaConfirm);
 
         JButton accederRegistrar = new JButton("Actualizar datos");
-        accederRegistrar.setSize(150,30);
-        accederRegistrar.setLocation(250,500);
-        accederRegistrar.setBackground(Color.decode("#ecd47f"));
+        accederRegistrar.setSize(180,30);
+        accederRegistrar.setLocation(200,520);
+        accederRegistrar.setBackground(Color.decode("#005F04"));
+        accederRegistrar.setForeground(Color.white);
+        accederRegistrar.setBorder(null);
+        accederRegistrar.setFont(new Font("Arial", Font.BOLD, 20));
         miCuenta.add(accederRegistrar);
 
         JButton cancelar = new JButton("Cancelar");
         cancelar.setSize(150,30);
-        cancelar.setLocation(100,500);
+        cancelar.setLocation(215,565);
         cancelar.setBackground(Color.decode("#E32636"));
+        cancelar.setForeground(Color.white);
+        cancelar.setBorder(null);
+        cancelar.setFont(new Font("Arial", Font.BOLD, 20));
         miCuenta.add(cancelar);
 
         cancelar.addActionListener(new ActionListener() {
