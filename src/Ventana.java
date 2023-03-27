@@ -16,7 +16,7 @@ public class Ventana extends JFrame {//hola
     public JPanel panel = null;
 
     private String anterior = "cargaPantalla";
-    private String actual = "cargaPantalla";
+    private String actual = "login";
 
     private String bienvenidonombre;
     private JComboBox<String> seleccionar = new JComboBox<String>();
@@ -151,7 +151,7 @@ public class Ventana extends JFrame {//hola
 
         JButton iniciar = new JButton("Iniciar sesión");
         iniciar.setSize(200,50);
-        iniciar.setLocation(200,200);
+        iniciar.setLocation(195,200);
         iniciar.setVisible(false);
         iniciar.setBackground(Color.decode("#005F04"));
         iniciar.setForeground(Color.white);
@@ -208,61 +208,67 @@ public class Ventana extends JFrame {//hola
         loginPanel.setBackground(Color.decode("#95E799"));
         
         JLabel imagen = new JLabel();
-        imagen.setSize(100,100);
+        imagen.setSize(80,80);
         ImageIcon imag = new ImageIcon("cactus-logo.png");
         Icon icono = new ImageIcon (imag.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
         imagen.setIcon(icono);
-        imagen.setLocation(250,460);
+        imagen.setLocation(240,540);
         loginPanel.add(imagen);
-
-        JLabel account = new JLabel("Mi cuenta",JLabel.CENTER);
-        account.setFont(new Font("Arial",Font.BOLD,20));
-        account.setSize(200,80);
-        account.setLocation(150,5);
-        account.setForeground(Color.white);
-        loginPanel.add(account);
-
+        
+        JLabel imagen2 = new JLabel();
+        imagen2.setSize(210,210);
+        ImageIcon imag2 = new ImageIcon("cactus-login.png");
+        Icon icono2 = new ImageIcon (imag2.getImage().getScaledInstance(imagen2.getWidth(), imagen2.getHeight(), Image.SCALE_DEFAULT));
+        imagen2.setIcon(icono2);
+        imagen2.setLocation(175,35);
+        loginPanel.add(imagen2);
+        
         JLabel panel = new JLabel("Inicio de sesión",JLabel.CENTER);
-        panel.setFont(new Font("Arial",Font.BOLD,30));
+        panel.setFont(new Font("Arial",Font.BOLD,35));
         panel.setSize(300,80);
-        panel.setLocation(100,60);
-        panel.setForeground(Color.decode("#dcca8a"));
+        panel.setLocation(130,10);
+        panel.setForeground(Color.decode("#005F04"));
         loginPanel.add(panel);
 
         JLabel user = new JLabel("Ingresa tu nombre de usuario",JLabel.CENTER);
-        user.setFont(new Font("Arial",Font.BOLD,12));
+        user.setFont(new Font("Arial",Font.BOLD,15));
         user.setSize(300,80);
-        user.setLocation(60,110);
-        user.setForeground(Color.white);
+        user.setLocation(100,200);
+        user.setForeground(Color.decode("#005F04"));
         loginPanel.add(user);
 
         JTextField username = new JTextField();
-        username.setSize(250,40);
-        username.setLocation(125,160);
+        username.setSize(270,42);
+        username.setLocation(142,260);
         loginPanel.add(username);
 
         JLabel pass = new JLabel("Ingresa tu contraseña",JLabel.CENTER);
-        pass.setFont(new Font("Arial",Font.BOLD,12));
+        pass.setFont(new Font("Arial",Font.BOLD,15));
         pass.setSize(260,80);
-        pass.setLocation(60,190);
-        pass.setForeground(Color.white);
+        pass.setLocation(93,300);
+        pass.setForeground(Color.decode("#005F04"));
         loginPanel.add(pass);
 
         JPasswordField contrasena = new JPasswordField();
-        contrasena.setSize(250,40);
-        contrasena.setLocation(125,240);
+        contrasena.setSize(270,42);
+        contrasena.setLocation(142,350);
         loginPanel.add(contrasena);
 
         JButton acceder = new JButton("Acceder");
         acceder.setSize(150,30);
-        acceder.setLocation(250,300);
-        acceder.setBackground(Color.decode("#ecd47f"));
+        acceder.setLocation(205,410);
+        acceder.setBackground(Color.decode("#005F04"));
+        acceder.setForeground(Color.white);
+        acceder.setBorder(null);
+        acceder.setFont(new Font("Arial", Font.BOLD, 20));
         loginPanel.add(acceder);
         
-        JButton cancelarBorrar = new JButton("Cancelar");
-        cancelarBorrar.setSize(150,30);
-        cancelarBorrar.setLocation(100,300);
+        JButton cancelarBorrar = new JButton("Borrar todo");
+        cancelarBorrar.setSize(100,30);
+        cancelarBorrar.setLocation(230,460);
         cancelarBorrar.setBackground(Color.decode("#FF0000"));
+        cancelarBorrar.setForeground(Color.white);
+        cancelarBorrar.setBorder(null);
         loginPanel.add(cancelarBorrar);
         
         cancelarBorrar.addActionListener(new ActionListener() {
@@ -838,7 +844,7 @@ public class Ventana extends JFrame {//hola
             seleccionar.removeAllItems();
 
 
-        File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
+        File file = new File("src\\users.txt");
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String linea;
             while ((linea = reader.readLine()) != null) {
