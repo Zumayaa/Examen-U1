@@ -38,6 +38,7 @@ public class Ventana extends JFrame {//hola
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.decode("#CAE9DA"));
         this.setLayout(null);
+        this.setResizable(false);
         
         setIconImage(logoEmpresa.getImage());
         
