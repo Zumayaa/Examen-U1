@@ -1,5 +1,7 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +22,7 @@ public class Ventana extends JFrame {//hola
 
     private String bienvenidonombre;
     private JComboBox<String> seleccionar = new JComboBox<String>();
-    private boolean verificar = false;
+    
     ImageIcon logoEmpresa = new ImageIcon("cactus-company.png");
     
     
@@ -1004,8 +1006,6 @@ public class Ventana extends JFrame {//hola
                 String seleccionado = (String) seleccionar.getSelectedItem();
                 editarUser.setEnabled(true);
                 editarUser.setText("Editar " + seleccionado);
-
-
             }
 
         });
@@ -1036,6 +1036,9 @@ public class Ventana extends JFrame {//hola
 					modelo.setColumnIdentifiers(columnas);
 						
 					modelo.setRowCount(0);
+					
+					TableColumnModel columnModel = tabla.getColumnModel();
+				    columnModel.getColumn(columnModel.getColumnCount() - 1).setCellRenderer(new ButtonRenderer());
 						
 					Object[] datosEnLinea = bufer.lines().toArray();
 						
