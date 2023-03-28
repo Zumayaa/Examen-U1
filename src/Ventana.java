@@ -5,6 +5,8 @@ import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,6 +24,7 @@ public class Ventana extends JFrame {//hola
 
     private String bienvenidonombre;
     private JComboBox<String> seleccionar = new JComboBox<String>();
+    private String email = "";
     
     ImageIcon logoEmpresa = new ImageIcon("cactus-company.png");
     
@@ -35,6 +38,7 @@ public class Ventana extends JFrame {//hola
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.decode("#CAE9DA"));
         this.setLayout(null);
+        this.setResizable(false);
         
         setIconImage(logoEmpresa.getImage());
         
@@ -293,7 +297,7 @@ public class Ventana extends JFrame {//hola
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                String email = username.getText();
+                email = username.getText();
                 String pwd = new String (contrasena.getPassword());
 
                 BufferedReader reader;
@@ -910,6 +914,29 @@ public class Ventana extends JFrame {//hola
 		});
         return crearcuenta;
     }
+    
+    private static void eliminarLineaEnArchivo(int fila) {
+        try {
+            File file = new File("src\\users.txt");
+            
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String lineaActual;
+            StringBuffer buffer = new StringBuffer();
+            int filaActual = 0;
+            while ((lineaActual = reader.readLine()) != null) {
+                if (filaActual != fila) {
+                    buffer.append(lineaActual + "\n");
+                }
+                filaActual++;
+            }
+            reader.close();
+            FileWriter writer = new FileWriter(file, false);
+            writer.write(buffer.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public JPanel listaUsuarios(){
@@ -977,6 +1004,26 @@ public class Ventana extends JFrame {//hola
         tabla.setVisible(false);
         listaUsuarios.add(tabla);
         
+        tabla.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                int filaSeleccionada = tabla.getSelectedRow();
+                int columnaSeleccionada = tabla.getSelectedColumn();
+                if (columnaSeleccionada == 4 ) { 
+                	String emailLogueado = (String) tabla.getValueAt(filaSeleccionada, 2);
+                	System.out.println(emailLogueado);
+                	if(emailLogueado.equals(email)) {
+                		JOptionPane.showMessageDialog(null, "No, no puedes borrarte a ti mismo...", "Así te quería agarrar", JOptionPane.OK_OPTION);
+                	}else {
+                		int opcion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas eliminar esta fila?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+                        if (opcion == JOptionPane.YES_OPTION) {
+                            DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+                            modelo.removeRow(filaSeleccionada);
+                            eliminarLineaEnArchivo(filaSeleccionada);
+                      }
+                }	}
+            }
+        });
+        
         JScrollPane scrollPane = new JScrollPane(tabla);
         scrollPane.setLocation(85,290);
         scrollPane.setSize(400,300);
@@ -1006,7 +1053,9 @@ public class Ventana extends JFrame {//hola
                 String seleccionado = (String) seleccionar.getSelectedItem();
                 editarUser.setEnabled(true);
                 editarUser.setText("Editar " + seleccionado);
-            }
+                
+                }
+                
 
         });
 
@@ -1015,9 +1064,27 @@ public class Ventana extends JFrame {//hola
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				anterior = actual;
-				actual = "editarCuenta";
-                limpiarVentana();
+				String seleccionado = (String) seleccionar.getSelectedItem();
+				if(seleccionado.equals(email)) {
+					JOptionPane.showMessageDialog(null, "En 'Mi cuenta' puedes editar tu información", "No puedes editarte a ti mismo en esta ventana", JOptionPane.OK_OPTION);
+                	int op = JOptionPane.showConfirmDialog(null, "¿Deseas que te reedirigamos a 'Mi cuenta'?", "Reedirección", JOptionPane.YES_NO_OPTION);
+                	if(op == JOptionPane.YES_OPTION) {
+                		anterior = actual;
+        				actual = "micuenta";
+                        limpiarVentana();
+                        
+                        repaint();
+                        revalidate();
+                	}
+				}else {
+					anterior = actual;
+					actual = "editarCuenta";
+	                limpiarVentana();
+	                
+	                repaint();
+	                revalidate();
+				}
+				
 			}
         	
         });
