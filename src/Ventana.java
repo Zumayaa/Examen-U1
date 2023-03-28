@@ -309,7 +309,7 @@ public class Ventana extends JFrame {//hola
 
                 try{
                     //  FileReader file = new FileReader("src\\users.txt");
-                    FileReader file = new FileReader("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
+                    FileReader file = new FileReader("src\\users.txt");
                     reader = new BufferedReader(file);
                     String line = reader.readLine();
 
@@ -559,7 +559,7 @@ public class Ventana extends JFrame {//hola
                 }
 
                 try {
-                    File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt" );
+                    File file = new File("src\\users.txt" );
                     if (file.exists()) {
                         List<String> lines = Files.readAllLines(file.toPath(), StandardCharsets.UTF_8);
 
@@ -592,6 +592,7 @@ public class Ventana extends JFrame {//hola
                             Files.write(file.toPath(), lines, StandardCharsets.UTF_8);
 
                             JOptionPane.showMessageDialog(null, "Datos actualizados correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                            email = newEmail;
                         } else {
                             JOptionPane.showMessageDialog(null, "No se encontró el usuario en el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
                         }
@@ -602,6 +603,7 @@ public class Ventana extends JFrame {//hola
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Ocurrió un error al actualizar los datos.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
+                
             }
         });
 
@@ -739,7 +741,7 @@ public class Ventana extends JFrame {//hola
             @Override
             public void actionPerformed(ActionEvent e) {
                 String seleccionado = (String) seleccionar.getSelectedItem();
-                File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
+                File file = new File("src\\users.txt");
                 List<String> lineas = new ArrayList<>();
                 boolean encontrado = false;
                 String name = nombreRegistrar.getText();
@@ -987,7 +989,7 @@ public class Ventana extends JFrame {//hola
                 }else {
                     if(pwd.equals(pwdCopy)) {
                         try {
-                            writer = new FileWriter("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt",true);
+                            writer = new FileWriter("src\\users.txt",true);
                             linea = new PrintWriter(writer);
 
                             linea.println(name + "," + apellido + "," + email + "," + pwd);
@@ -1130,6 +1132,12 @@ public class Ventana extends JFrame {//hola
                             DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
                             modelo.removeRow(filaSeleccionada);
                             eliminarLineaEnArchivo(filaSeleccionada);
+                            anterior = actual;
+                            actual = "listaUsers";
+                            limpiarVentana();
+
+                            repaint();
+                            revalidate();
                         }
                     }	}
             }
@@ -1148,7 +1156,7 @@ public class Ventana extends JFrame {//hola
         seleccionar.removeAllItems();
 
 
-        File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
+        File file = new File("src\\users.txt");
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String linea;
             while ((linea = reader.readLine()) != null) {
@@ -1203,7 +1211,7 @@ public class Ventana extends JFrame {//hola
         abrirTabla.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
+                File file = new File("src\\users.txt");
                 BufferedReader bufer;
 
                 try {
