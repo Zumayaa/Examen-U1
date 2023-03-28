@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JButton;
@@ -8,7 +9,8 @@ class ButtonRenderer extends JButton implements TableCellRenderer {
     
 	public ButtonRenderer() {
         setText("X");
-        setEnabled(false); // deshabilitar el botón para que no se pueda clickear
+        setEnabled(true);
+        setBackground(Color.decode("#E32636"));
     }
 
     public Component getTableCellRendererComponent(JTable table, Object value,

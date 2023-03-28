@@ -1,3 +1,0 @@
-admin,adminazo,admin@.com,12
-12,12,12,12
-hola,gamer,gamer,34
