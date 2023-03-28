@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a42e13a9-ae6c-406a-81ed-4c225c6a7dc9" name="Changes" comment="El combobox añada solo el nombre de cada linea del .txt" />
+    <list default="true" id="a42e13a9-ae6c-406a-81ed-4c225c6a7dc9" name="Changes" comment="Añadir que el boton muestre el nombre del usuario a editar">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/users.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -119,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679879230029</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Añadir que el boton muestre el nombre del usuario a editar">
+      <created>1679879822861</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1679879822861</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -131,6 +141,7 @@
     <MESSAGE value="Añadir el mensaje de bienvenida junto al nombre del usuario" />
     <MESSAGE value="El combobox añada los contenidos del .txt" />
     <MESSAGE value="El combobox añada solo el nombre de cada linea del .txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="El combobox añada solo el nombre de cada linea del .txt" />
+    <MESSAGE value="Añadir que el boton muestre el nombre del usuario a editar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Añadir que el boton muestre el nombre del usuario a editar" />
   </component>
 </project>
