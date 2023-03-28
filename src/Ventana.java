@@ -917,7 +917,7 @@ public class Ventana extends JFrame {//hola
     private static void eliminarLineaEnArchivo(int fila) {
         try {
             File file = new File("src\\users.txt");
-            FileWriter writer = new FileWriter(file);
+            
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String lineaActual;
             StringBuffer buffer = new StringBuffer();
@@ -929,7 +929,7 @@ public class Ventana extends JFrame {//hola
                 filaActual++;
             }
             reader.close();
-            
+            FileWriter writer = new FileWriter(file, false);
             writer.write(buffer.toString());
             writer.close();
         } catch (IOException e) {
