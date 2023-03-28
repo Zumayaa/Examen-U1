@@ -715,50 +715,58 @@ public class Ventana extends JFrame {//hola
                 File file = new File("src\\users.txt");
                 List<String> lineas = new ArrayList<>();
                 boolean encontrado = false;
+                String name = nombreRegistrar.getText();
+				String apellido = apeRegistrar.getText();
+				String email = correoRegistrar.getText();
+				String pwd = (new String(contrasenaRegistrar.getPassword()));
+				String pwdCopy = (new String(contrasenaConfirm.getPassword()));
 
-                try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        String[] campos = line.split(",");
-                        if (campos[0].equals(seleccionado)) {
-                            encontrado = true;
-                            String nuevaLinea = nombreRegistrar.getText() + "," + apeRegistrar.getText() + "," + correoRegistrar.getText() + "," + new String(contrasenaRegistrar.getPassword());
-                            lineas.add(nuevaLinea);
-                        } else {
-                            lineas.add(line);
+                if(name.length() == 0 || apellido.length() == 0 || email.length() == 0 || pwd.length() == 0 || pwdCopy.length() == 0) {
+                	JOptionPane.showMessageDialog(null, "Debes de modificar todos los datos para poder continuar", "Error", JOptionPane.ERROR_MESSAGE);
+                }else {
+                	try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            String[] campos = line.split(",");
+                            if (campos[0].equals(seleccionado)) {
+                                encontrado = true;
+                                String nuevaLinea = nombreRegistrar.getText() + "," + apeRegistrar.getText() + "," + correoRegistrar.getText() + "," + new String(contrasenaRegistrar.getPassword());
+                                lineas.add(nuevaLinea);
+                            } else {
+                                lineas.add(line);
+                            }
                         }
-                    }
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-
-                if (!encontrado) {
-                    JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-                    	for (int i = 0; i < lineas.size(); i++) {
-                    	    String linea = lineas.get(i);
-                    	    bw.write(linea);
-                    	    bw.newLine();
-                    	}
-                        JOptionPane.showMessageDialog(null, "Usuario actualizado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                        nombreRegistrar.setText("");
-                        apeRegistrar.setText("");
-                        correoRegistrar.setText("");
-                        contrasenaRegistrar.setText("");
-                        contrasenaConfirm.setText("");   
-                        
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-                }
-                JOptionPane.showMessageDialog(null, "Será reedirigido a la lista de usuarios", "Redirección", JOptionPane.INFORMATION_MESSAGE);
-                anterior = actual;
-                actual = "listaUsers";
-                limpiarVentana();
 
-                repaint();
-                revalidate();
+                    if (!encontrado) {
+                        JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+                        	for (int i = 0; i < lineas.size(); i++) {
+                        	    String linea = lineas.get(i);
+                        	    bw.write(linea);
+                        	    bw.newLine();
+                        	}
+                            JOptionPane.showMessageDialog(null, "Usuario actualizado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                            nombreRegistrar.setText("");
+                            apeRegistrar.setText("");
+                            correoRegistrar.setText("");
+                            contrasenaRegistrar.setText("");
+                            contrasenaConfirm.setText("");   
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                    JOptionPane.showMessageDialog(null, "Será reedirigido a la lista de usuarios", "Redirección", JOptionPane.INFORMATION_MESSAGE);
+                    anterior = actual;
+                    actual = "listaUsers";
+                    limpiarVentana();
+
+                    repaint();
+                    revalidate();
+                }
             }
 
         });
