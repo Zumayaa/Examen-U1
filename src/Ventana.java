@@ -20,6 +20,7 @@ public class Ventana extends JFrame {//hola
 
     private String bienvenidonombre;
     private JComboBox<String> seleccionar = new JComboBox<String>();
+    private boolean verificar = false;
     ImageIcon logoEmpresa = new ImageIcon("cactus-company.png");
     
     
@@ -956,6 +957,7 @@ public class Ventana extends JFrame {//hola
         editarUser.setForeground(Color.white);
         editarUser.setBorder(null);
         editarUser.setFont(new Font("Arial", Font.BOLD, 20));
+        editarUser.setEnabled(false);
         listaUsuarios.add(editarUser);
 
         JButton abrirTabla = new JButton("Mostrar datos");
@@ -1000,6 +1002,7 @@ public class Ventana extends JFrame {//hola
         seleccionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String seleccionado = (String) seleccionar.getSelectedItem();
+                editarUser.setEnabled(true);
                 editarUser.setText("Editar " + seleccionado);
 
 
@@ -1054,7 +1057,6 @@ public class Ventana extends JFrame {//hola
 			}
 			
 		});
-
 
         return listaUsuarios;
 
