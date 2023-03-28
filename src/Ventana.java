@@ -1052,7 +1052,9 @@ public class Ventana extends JFrame {//hola
                 String seleccionado = (String) seleccionar.getSelectedItem();
                 editarUser.setEnabled(true);
                 editarUser.setText("Editar " + seleccionado);
-            }
+                
+                }
+                
 
         });
 
@@ -1061,9 +1063,27 @@ public class Ventana extends JFrame {//hola
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				anterior = actual;
-				actual = "editarCuenta";
-                limpiarVentana();
+				String seleccionado = (String) seleccionar.getSelectedItem();
+				if(seleccionado.equals(email)) {
+					JOptionPane.showMessageDialog(null, "En 'Mi cuenta' puedes editar tu información", "No puedes editarte a ti mismo en esta ventana", JOptionPane.OK_OPTION);
+                	int op = JOptionPane.showConfirmDialog(null, "¿Deseas que te reedirigamos a 'Mi cuenta'?", "Reedirección", JOptionPane.YES_NO_OPTION);
+                	if(op == JOptionPane.YES_OPTION) {
+                		anterior = actual;
+        				actual = "micuenta";
+                        limpiarVentana();
+                        
+                        repaint();
+                        revalidate();
+                	}
+				}else {
+					anterior = actual;
+					actual = "editarCuenta";
+	                limpiarVentana();
+	                
+	                repaint();
+	                revalidate();
+				}
+				
 			}
         	
         });
