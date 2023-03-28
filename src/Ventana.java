@@ -484,6 +484,22 @@ public class Ventana extends JFrame {
         inicia.setLocation(135,10);
         inicia.setForeground(Color.decode("#005F04"));
         miCuenta.add(inicia);
+        
+        JLabel imagen = new JLabel();
+        imagen.setSize(80,80);
+        ImageIcon imag = new ImageIcon("cactus-logo.png");
+        Icon icono = new ImageIcon (imag.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
+        imagen.setIcon(icono);
+        imagen.setLocation(250,540);
+        miCuenta.add(imagen);
+
+        JLabel imagen2 = new JLabel();
+        imagen2.setSize(150,150);
+        ImageIcon imag2 = new ImageIcon("cactus-account.png");
+        Icon icono2 = new ImageIcon (imag2.getImage().getScaledInstance(imagen2.getWidth(), imagen2.getHeight(), Image.SCALE_DEFAULT));
+        imagen2.setIcon(icono2);
+        imagen2.setLocation(205,67);
+        miCuenta.add(imagen2);
 
         JLabel nameRegistrar = new JLabel("Ingresa tu nombre",JLabel.CENTER);
         nameRegistrar.setFont(new Font("Arial",Font.BOLD,15));
@@ -528,10 +544,10 @@ public class Ventana extends JFrame {
         passRegistrar.setForeground(Color.decode("#005F04"));
         miCuenta.add(passRegistrar);
 
-        JPasswordField contraseñaRegistrar = new JPasswordField();
-        contraseñaRegistrar.setSize(280,43);
-        contraseñaRegistrar.setLocation(150,380);
-        miCuenta.add(contraseñaRegistrar);
+        JPasswordField contrasenaRegistrar = new JPasswordField();
+        contrasenaRegistrar.setSize(280,43);
+        contrasenaRegistrar.setLocation(150,380);
+        miCuenta.add(contrasenaRegistrar);
 
         JButton accederRegistrar = new JButton("Actualizar datos");
         accederRegistrar.setSize(190,30);
@@ -546,9 +562,11 @@ public class Ventana extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Check if any fields are empty
-                if (nombreRegistrar.getText().isEmpty() || apeRegistrar.getText().isEmpty() || correoRegistrar.getText().isEmpty() || contraseñaRegistrar.getPassword().length == 0) {
+                if (nombreRegistrar.getText().isEmpty() || apeRegistrar.getText().isEmpty() || correoRegistrar.getText().isEmpty() || contrasenaRegistrar.getPassword().length == 0) {
                     JOptionPane.showMessageDialog(null, "Debes de modificar todos los datos para poder continuar", "Error", JOptionPane.ERROR_MESSAGE);
+                    
+                    correoRegistrar.setText("");
+                    contrasenaRegistrar.setText("");
                     return;
                 }
 
@@ -562,6 +580,7 @@ public class Ventana extends JFrame {
                             String[] parts = linea.split(",");
                             if (parts.length >= 3 && parts[2].equals(newEmail)) {
                                 JOptionPane.showMessageDialog(null, "El correo ingresado ya está registrado.", "Error", JOptionPane.ERROR_MESSAGE);
+                                correoRegistrar.setText("");
                                 return;
                             }
                         }
@@ -580,7 +599,7 @@ public class Ventana extends JFrame {
                             parts[0] = nombreRegistrar.getText();
                             parts[1] = apeRegistrar.getText();
                             parts[2] = correoRegistrar.getText();
-                            parts[3] = new String(contraseñaRegistrar.getPassword());
+                            parts[3] = new String(contrasenaRegistrar.getPassword());
                             lines.set(index, String.join(",", parts));
 
                             Files.write(file.toPath(), lines, StandardCharsets.UTF_8);
@@ -746,7 +765,12 @@ public class Ventana extends JFrame {
 
                 if(name.length() == 0 || apellido.length() == 0 || email.length() == 0 || pwd.length() == 0 || pwdCopy.length() == 0) {
                     JOptionPane.showMessageDialog(null, "Debes de modificar todos los datos para poder continuar", "Error", JOptionPane.ERROR_MESSAGE);
-
+                    nombreRegistrar.setText("");
+                    apeRegistrar.setText("");
+                    correoRegistrar.setText("");
+                    contrasenaRegistrar.setText("");
+                    contrasenaConfirm.setText("");
+                    
                 } else {
                     try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                         String line;
@@ -1169,7 +1193,7 @@ public class Ventana extends JFrame {
         seleccionar.removeAllItems();
 
 
-        File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
+        File file = new File("src\\users.txt");
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String linea;
             while ((linea = reader.readLine()) != null) {
