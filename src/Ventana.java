@@ -15,6 +15,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ventana extends JFrame {//hola
     public JPanel panel = null;
@@ -704,6 +706,51 @@ public class Ventana extends JFrame {//hola
         accederRegistrar.setBorder(null);
         accederRegistrar.setFont(new Font("Arial", Font.BOLD, 20));
         miCuenta.add(accederRegistrar);
+        
+        accederRegistrar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String seleccionado = (String) seleccionar.getSelectedItem();
+                File file = new File("src\\users.txt");
+                List<String> lineas = new ArrayList<>();
+                boolean encontrado = false;
+
+                try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        String[] campos = line.split(",");
+                        if (campos[0].equals(seleccionado)) {
+                            encontrado = true;
+                            String nuevaLinea = nombreRegistrar.getText() + "," +
+                                                apeRegistrar.getText() + "," +
+                                                correoRegistrar.getText() + "," +
+                                                new String(contrasenaRegistrar.getPassword());
+                            lineas.add(nuevaLinea);
+                        } else {
+                            lineas.add(line);
+                        }
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
+                if (!encontrado) {
+                    JOptionPane.showMessageDialog(null, "No se encontró el usuario seleccionado", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+                        for (String linea : lineas) {
+                            bw.write(linea);
+                            bw.newLine();
+                        }
+                        JOptionPane.showMessageDialog(null, "Usuario actualizado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+
+        });
 
         JButton cancelar = new JButton("Cancelar");
         cancelar.setSize(150,30);
