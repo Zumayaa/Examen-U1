@@ -16,11 +16,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.StringTokenizer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ventana extends JFrame {//hola
+public class Ventana extends JFrame {
     public JPanel panel = null;
 
     private String anterior = "cargaPantalla";
@@ -40,7 +39,7 @@ public class Ventana extends JFrame {//hola
         this.setTitle("Cactu's Corporation");
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.getContentPane().setBackground(Color.decode("#CAE9DA"));
+        this.getContentPane().setBackground(Color.decode("#95E799"));
         this.setLayout(null);
         this.setResizable(false);
 
