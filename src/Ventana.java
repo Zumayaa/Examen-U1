@@ -1008,13 +1008,18 @@ public class Ventana extends JFrame {//hola
                 int filaSeleccionada = tabla.getSelectedRow();
                 int columnaSeleccionada = tabla.getSelectedColumn();
                 if (columnaSeleccionada == 4 ) { 
-                    int opcion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas eliminar esta fila?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
-                    if (opcion == JOptionPane.YES_OPTION) {
-                        DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
-                        modelo.removeRow(filaSeleccionada);
-                        eliminarLineaEnArchivo(filaSeleccionada);
-                    }
-                }
+                	String emailLogueado = (String) tabla.getValueAt(filaSeleccionada, 2);
+                	System.out.println(emailLogueado);
+                	if(emailLogueado.equals(email)) {
+                		JOptionPane.showMessageDialog(null, "No, no puedes borrarte a ti mismo...", "Así te quería agarrar", JOptionPane.OK_OPTION);
+                	}else {
+                		int opcion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas eliminar esta fila?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+                        if (opcion == JOptionPane.YES_OPTION) {
+                            DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+                            modelo.removeRow(filaSeleccionada);
+                            eliminarLineaEnArchivo(filaSeleccionada);
+                      }
+                }	}
             }
         });
         
