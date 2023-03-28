@@ -7,17 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Ventana extends JFrame {
     public JPanel panel = null;
@@ -602,7 +597,7 @@ public class Ventana extends JFrame {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Ocurrió un error al actualizar los datos.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                
+
             }
         });
 
@@ -751,12 +746,16 @@ public class Ventana extends JFrame {
 
                 if(name.length() == 0 || apellido.length() == 0 || email.length() == 0 || pwd.length() == 0 || pwdCopy.length() == 0) {
                     JOptionPane.showMessageDialog(null, "Debes de modificar todos los datos para poder continuar", "Error", JOptionPane.ERROR_MESSAGE);
-                }else {
-                    if(pwd.equals(pwdCopy)) {
-                        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-                            String line;
-                            while ((line = br.readLine()) != null) {
-                                String[] campos = line.split(",");
+
+                } else {
+                    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            String[] campos = line.split(",");
+                            if (campos[2].equals(email)) {
+                                encontrado = false;
+                                //    break;
+                            } else {
                                 if (campos[0].equals(seleccionado)) {
                                     encontrado = true;
                                     String nuevaLinea = nombreRegistrar.getText() + "," + apeRegistrar.getText() + "," + correoRegistrar.getText() + "," + new String(contrasenaRegistrar.getPassword());
@@ -765,41 +764,37 @@ public class Ventana extends JFrame {
                                     lineas.add(line);
                                 }
                             }
+                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+
+                    if (!encontrado) {
+                        JOptionPane.showMessageDialog(null, "El correo electrónico ya existe en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+                            for (int i = 0; i < lineas.size(); i++) {
+                                String linea = lineas.get(i);
+                                bw.write(linea);
+                                bw.newLine();
+                            }
+                            JOptionPane.showMessageDialog(null, "Usuario actualizado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                            nombreRegistrar.setText("");
+                            apeRegistrar.setText("");
+                            correoRegistrar.setText("");
+                            contrasenaRegistrar.setText("");
+                            contrasenaConfirm.setText("");
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
-
-                        if (!encontrado) {
-                            JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
-                        } else {
-                            try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-                                for (int i = 0; i < lineas.size(); i++) {
-                                    String linea = lineas.get(i);
-                                    bw.write(linea);
-                                    bw.newLine();
-                                }
-                                JOptionPane.showMessageDialog(null, "Usuario actualizado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                                nombreRegistrar.setText("");
-                                apeRegistrar.setText("");
-                                correoRegistrar.setText("");
-                                contrasenaRegistrar.setText("");
-                                contrasenaConfirm.setText("");
-                            } catch (IOException ex) {
-                                ex.printStackTrace();
-                            }
-                        }
-                        JOptionPane.showMessageDialog(null, "Será reedirigido a la lista de usuarios", "Redirección", JOptionPane.INFORMATION_MESSAGE);
-                        anterior = actual;
-                        actual = "listaUsers";
-                        limpiarVentana();
-
-                        repaint();
-                        revalidate();
-                    }else {
-                        JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
-                        contrasenaRegistrar.setText("");
-                        contrasenaConfirm.setText("");
                     }
+                    JOptionPane.showMessageDialog(null, "Será reedirigido a la lista de usuarios", "Redirección", JOptionPane.INFORMATION_MESSAGE);
+                    anterior = actual;
+                    actual = "listaUsers";
+                    limpiarVentana();
+
+                    repaint();
+                    revalidate();
                 }
             }
 
@@ -985,8 +980,27 @@ public class Ventana extends JFrame {
                     correoRegistrar.setText("");
                     contrasenaRegistrar.setText("");
                     contrasenaConfirmar.setText("");
-                }else {
-                    if(pwd.equals(pwdCopy)) {
+                } else {
+                    boolean emailExists = false;
+                    try {
+                        Scanner scanner = new Scanner(new File("src\\users.txt"));
+                        while (scanner.hasNextLine()) {
+                            String line = scanner.nextLine();
+                            String[] userData = line.split(",");
+                            if (userData[2].equals(email)) {
+                                emailExists = true;
+                                break;
+                            }
+                        }
+                        scanner.close();
+                    } catch (FileNotFoundException ex) {
+                        ex.printStackTrace();
+                    }
+
+                    if (emailExists) {
+                        JOptionPane.showMessageDialog(null, "El correo electrónico ya está registrado", "Error", JOptionPane.WARNING_MESSAGE);
+                        correoRegistrar.setText("");
+                    } else if(pwd.equals(pwdCopy)) {
                         try {
                             writer = new FileWriter("src\\users.txt",true);
                             linea = new PrintWriter(writer);
@@ -1012,10 +1026,10 @@ public class Ventana extends JFrame {
                                 repaint();
                                 revalidate();
                             }
-                        }catch(IOException de){
+                        } catch(IOException de){
                             de.printStackTrace();
                         }
-                    }else {
+                    } else {
                         JOptionPane.showMessageDialog(null, "Las contraseñas no han coincidido","Mal",JOptionPane.WARNING_MESSAGE);
                         contrasenaRegistrar.setText("");
                         contrasenaConfirmar.setText("");
@@ -1155,7 +1169,7 @@ public class Ventana extends JFrame {
         seleccionar.removeAllItems();
 
 
-        File file = new File("src\\users.txt");
+        File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String linea;
             while ((linea = reader.readLine()) != null) {
