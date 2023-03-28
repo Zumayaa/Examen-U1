@@ -127,7 +127,7 @@ public class Ventana extends JFrame {
             this.revalidate();
         }
     }
-
+  //CARGA PANTALLA------------------------------------------------------------------------------
     public JPanel cargaPantalla(){
         anterior = actual;
         actual = "cargaPantalla";
@@ -646,7 +646,7 @@ public class Ventana extends JFrame {
 
         return miCuenta;
     }
-
+  //EDITAR CUENTA------------------------------------------------------------------------------
     public JPanel editarCuenta(){
         anterior = actual;
         actual = "editarCuenta";
@@ -850,15 +850,7 @@ public class Ventana extends JFrame {
 
         return miCuenta;
     }
-
-
-
-
-
-
-
-
-
+  //CREAR CUENTA------------------------------------------------------------------------------
     public JPanel crearCuenta(){
         anterior = actual;
         actual = "crearcuenta";
@@ -1088,7 +1080,7 @@ public class Ventana extends JFrame {
         }
     }
 
-
+  //LISTA DE USUARIOS ------------------------------------------------------------------------------
     public JPanel listaUsuarios(){
         anterior = actual;
         actual = "listaUsers";
@@ -1287,7 +1279,7 @@ public class Ventana extends JFrame {
         return listaUsuarios;
 
     }
-
+  //AYUDA------------------------------------------------------------------------------
     public JPanel ayuda() {
         anterior = actual;
         actual = "ayuda";
