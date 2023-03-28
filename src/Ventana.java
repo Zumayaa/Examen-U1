@@ -14,7 +14,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.StringTokenizer;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ventana extends JFrame {//hola
     public JPanel panel = null;
@@ -25,10 +29,10 @@ public class Ventana extends JFrame {//hola
     private String bienvenidonombre;
     private JComboBox<String> seleccionar = new JComboBox<String>();
     private String email = "";
-    
+
     ImageIcon logoEmpresa = new ImageIcon("cactus-company.png");
-    
-    
+
+
     public Ventana(){
 
         this.setVisible(true);
@@ -39,9 +43,9 @@ public class Ventana extends JFrame {//hola
         this.getContentPane().setBackground(Color.decode("#CAE9DA"));
         this.setLayout(null);
         this.setResizable(false);
-        
+
         setIconImage(logoEmpresa.getImage());
-        
+
 
         limpiarVentana();
 
@@ -92,7 +96,7 @@ public class Ventana extends JFrame {//hola
             this.repaint();
             this.revalidate();
         }
-        
+
         if(actual.equals("editarCuenta")){
             panel = editarCuenta();
 
@@ -146,7 +150,7 @@ public class Ventana extends JFrame {//hola
         bienvenido.setLocation(40,550);
         bienvenido.setForeground(Color.decode("#0C7F11"));
         cargaPanel.add(bienvenido);
-        
+
         JLabel cactus = new JLabel("Cactu's Corporation",JLabel.CENTER);
         cactus.setFont(new Font("Dialog",Font.BOLD,35));
         cactus.setSize(500,100);
@@ -169,9 +173,9 @@ public class Ventana extends JFrame {//hola
         iniciar.setBorder(null);
         iniciar.setFont(new Font("Arial", Font.BOLD, 20));
         cargaPanel.add(iniciar);
-        
+
         this.add(cargaPanel);
-        
+
         JLabel imagen = new JLabel();
         imagen.setSize(100,100);
         ImageIcon imag = new ImageIcon("cactus-logo.png");
@@ -217,7 +221,7 @@ public class Ventana extends JFrame {//hola
         loginPanel.setLocation(0, 0);
         loginPanel.setLayout(null);
         loginPanel.setBackground(Color.decode("#95E799"));
-        
+
         JLabel imagen = new JLabel();
         imagen.setSize(80,80);
         ImageIcon imag = new ImageIcon("cactus-logo.png");
@@ -225,7 +229,7 @@ public class Ventana extends JFrame {//hola
         imagen.setIcon(icono);
         imagen.setLocation(240,540);
         loginPanel.add(imagen);
-        
+
         JLabel imagen2 = new JLabel();
         imagen2.setSize(210,210);
         ImageIcon imag2 = new ImageIcon("cactus-login.png");
@@ -233,7 +237,7 @@ public class Ventana extends JFrame {//hola
         imagen2.setIcon(icono2);
         imagen2.setLocation(175,35);
         loginPanel.add(imagen2);
-        
+
         JLabel panel = new JLabel("Inicio de sesión",JLabel.CENTER);
         panel.setFont(new Font("Arial",Font.BOLD,35));
         panel.setSize(300,80);
@@ -273,7 +277,7 @@ public class Ventana extends JFrame {//hola
         acceder.setBorder(null);
         acceder.setFont(new Font("Arial", Font.BOLD, 20));
         loginPanel.add(acceder);
-        
+
         JButton cancelarBorrar = new JButton("Borrar todo");
         cancelarBorrar.setSize(100,30);
         cancelarBorrar.setLocation(230,460);
@@ -281,16 +285,16 @@ public class Ventana extends JFrame {//hola
         cancelarBorrar.setForeground(Color.white);
         cancelarBorrar.setBorder(null);
         loginPanel.add(cancelarBorrar);
-        
+
         cancelarBorrar.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				username.setText("");
-				contrasena.setText("");
-				
-			}
-        	
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                username.setText("");
+                contrasena.setText("");
+
+            }
+
         });
 
         acceder.addActionListener(new ActionListener() {
@@ -305,7 +309,7 @@ public class Ventana extends JFrame {//hola
 
                 try{
                     //  FileReader file = new FileReader("src\\users.txt");
-                    FileReader file = new FileReader("src\\users.txt");
+                    FileReader file = new FileReader("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
                     reader = new BufferedReader(file);
                     String line = reader.readLine();
 
@@ -352,7 +356,7 @@ public class Ventana extends JFrame {//hola
         menu.setLocation(0,0);
         menu.setLayout(null);
         menu.setBackground(Color.decode("#95E799"));
-        
+
         JLabel bienvenido = new JLabel("Bienvenido " + bienvenidonombre + "!");
         bienvenido.setSize(400,30);
         bienvenido.setFont(new Font("Arial", Font.BOLD, 30));
@@ -367,7 +371,7 @@ public class Ventana extends JFrame {//hola
         imagen.setIcon(icono);
         imagen.setLocation(190,150);
         menu.add(imagen);
-        
+
         JLabel imagen2 = new JLabel();
         imagen2.setSize(90,90);
         ImageIcon imag2 = new ImageIcon("cactus-logo.png");
@@ -479,29 +483,13 @@ public class Ventana extends JFrame {//hola
         miCuenta.setLocation(0, 0);
         miCuenta.setLayout(null);
         miCuenta.setBackground(Color.decode("#95E799"));
-        
+
         JLabel inicia = new JLabel("Mi cuenta",JLabel.CENTER);
         inicia.setFont(new Font("Arial",Font.BOLD,35));
         inicia.setSize(300,80);
         inicia.setLocation(135,10);
         inicia.setForeground(Color.decode("#005F04"));
         miCuenta.add(inicia);
-        
-        JLabel imagen = new JLabel();
-        imagen.setSize(140,140);
-        ImageIcon imag = new ImageIcon("cactus-account.png");
-        Icon icono = new ImageIcon (imag.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
-        imagen.setIcon(icono);
-        imagen.setLocation(213,68);
-        miCuenta.add(imagen);
-        
-        JLabel imagen2 = new JLabel();
-        imagen2.setSize(90,90);
-        ImageIcon imag2 = new ImageIcon("cactus-logo.png");
-        Icon icono2 = new ImageIcon (imag2.getImage().getScaledInstance(imagen2.getWidth(), imagen2.getHeight(), Image.SCALE_DEFAULT));
-        imagen2.setIcon(icono2);
-        imagen2.setLocation(250,540);
-        miCuenta.add(imagen2);
 
         JLabel nameRegistrar = new JLabel("Ingresa tu nombre",JLabel.CENTER);
         nameRegistrar.setFont(new Font("Arial",Font.BOLD,15));
@@ -559,17 +547,62 @@ public class Ventana extends JFrame {//hola
         accederRegistrar.setBorder(null);
         accederRegistrar.setFont(new Font("Arial", Font.BOLD, 20));
         miCuenta.add(accederRegistrar);
-        
+
         accederRegistrar.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-			}
-			
-        	
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Check if any fields are empty
+                if (nombreRegistrar.getText().isEmpty() || apeRegistrar.getText().isEmpty() || correoRegistrar.getText().isEmpty() || contraseñaRegistrar.getPassword().length == 0) {
+                    JOptionPane.showMessageDialog(null, "Debes de modificar todos los datos para poder continuar", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                try {
+                    File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt" );
+                    if (file.exists()) {
+                        List<String> lines = Files.readAllLines(file.toPath(), StandardCharsets.UTF_8);
+
+                        String newEmail = correoRegistrar.getText();
+                        for (String linea : lines) {
+                            String[] parts = linea.split(",");
+                            if (parts.length >= 3 && parts[2].equals(newEmail)) {
+                                JOptionPane.showMessageDialog(null, "El correo ingresado ya está registrado.", "Error", JOptionPane.ERROR_MESSAGE);
+                                return;
+                            }
+                        }
+
+                        int index = -1;
+                        for (int i = 0; i < lines.size(); i++) {
+                            String[] parts = lines.get(i).split(",");
+                            if (parts.length >= 3 && parts[2].equals(email)) {
+                                index = i;
+                                break;
+                            }
+                        }
+
+                        if (index >= 0) {
+                            String[] parts = lines.get(index).split(",");
+                            parts[0] = nombreRegistrar.getText();
+                            parts[1] = apeRegistrar.getText();
+                            parts[2] = correoRegistrar.getText();
+                            parts[3] = new String(contraseñaRegistrar.getPassword());
+                            lines.set(index, String.join(",", parts));
+
+                            Files.write(file.toPath(), lines, StandardCharsets.UTF_8);
+
+                            JOptionPane.showMessageDialog(null, "Datos actualizados correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se encontró el usuario en el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se encontró el archivo de usuario.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Ocurrió un error al actualizar los datos.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         });
 
         JButton cancelar = new JButton("Cancelar");
@@ -598,7 +631,7 @@ public class Ventana extends JFrame {//hola
 
         return miCuenta;
     }
-    
+
     public JPanel editarCuenta(){
         anterior = actual;
         actual = "editarCuenta";
@@ -608,14 +641,14 @@ public class Ventana extends JFrame {//hola
         miCuenta.setLocation(0, 0);
         miCuenta.setLayout(null);
         miCuenta.setBackground(Color.decode("#95E799"));
-        
+
         JLabel inicia = new JLabel("Editar cuenta",JLabel.CENTER);
         inicia.setFont(new Font("Arial",Font.BOLD,35));
         inicia.setSize(300,80);
         inicia.setLocation(135,10);
         inicia.setForeground(Color.decode("#005F04"));
         miCuenta.add(inicia);
-        
+
         JLabel imagen = new JLabel();
         imagen.setSize(170,170);
         ImageIcon imag = new ImageIcon("cactus-edit.png");
@@ -623,7 +656,7 @@ public class Ventana extends JFrame {//hola
         imagen.setIcon(icono);
         imagen.setLocation(197,50);
         miCuenta.add(imagen);
-        
+
         JLabel imagen2 = new JLabel();
         imagen2.setSize(40,40);
         ImageIcon imag2 = new ImageIcon("cactus-logo.png");
@@ -679,14 +712,14 @@ public class Ventana extends JFrame {//hola
         contrasenaRegistrar.setSize(280,43);
         contrasenaRegistrar.setLocation(150,380);
         miCuenta.add(contrasenaRegistrar);
-        
+
         JLabel passConfirm = new JLabel("Confirmar contraseña",JLabel.CENTER);
         passConfirm.setFont(new Font("Arial",Font.BOLD,15));
         passConfirm.setSize(260,80);
         passConfirm.setLocation(98,410);
         passConfirm.setForeground(Color.decode("#005F04"));
         miCuenta.add(passConfirm);
-        
+
         JPasswordField contrasenaConfirm = new JPasswordField();
         contrasenaConfirm.setSize(280,43);
         contrasenaConfirm.setLocation(150,460);
@@ -700,6 +733,76 @@ public class Ventana extends JFrame {//hola
         accederRegistrar.setBorder(null);
         accederRegistrar.setFont(new Font("Arial", Font.BOLD, 20));
         miCuenta.add(accederRegistrar);
+
+        accederRegistrar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String seleccionado = (String) seleccionar.getSelectedItem();
+                File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
+                List<String> lineas = new ArrayList<>();
+                boolean encontrado = false;
+                String name = nombreRegistrar.getText();
+                String apellido = apeRegistrar.getText();
+                String email = correoRegistrar.getText();
+                String pwd = (new String(contrasenaRegistrar.getPassword()));
+                String pwdCopy = (new String(contrasenaConfirm.getPassword()));
+
+                if(name.length() == 0 || apellido.length() == 0 || email.length() == 0 || pwd.length() == 0 || pwdCopy.length() == 0) {
+                    JOptionPane.showMessageDialog(null, "Debes de modificar todos los datos para poder continuar", "Error", JOptionPane.ERROR_MESSAGE);
+                }else {
+                    if(pwd.equals(pwdCopy)) {
+                        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                            String line;
+                            while ((line = br.readLine()) != null) {
+                                String[] campos = line.split(",");
+                                if (campos[0].equals(seleccionado)) {
+                                    encontrado = true;
+                                    String nuevaLinea = nombreRegistrar.getText() + "," + apeRegistrar.getText() + "," + correoRegistrar.getText() + "," + new String(contrasenaRegistrar.getPassword());
+                                    lineas.add(nuevaLinea);
+                                } else {
+                                    lineas.add(line);
+                                }
+                            }
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+
+                        if (!encontrado) {
+                            JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+                                for (int i = 0; i < lineas.size(); i++) {
+                                    String linea = lineas.get(i);
+                                    bw.write(linea);
+                                    bw.newLine();
+                                }
+                                JOptionPane.showMessageDialog(null, "Usuario actualizado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                                nombreRegistrar.setText("");
+                                apeRegistrar.setText("");
+                                correoRegistrar.setText("");
+                                contrasenaRegistrar.setText("");
+                                contrasenaConfirm.setText("");
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+                        JOptionPane.showMessageDialog(null, "Será reedirigido a la lista de usuarios", "Redirección", JOptionPane.INFORMATION_MESSAGE);
+                        anterior = actual;
+                        actual = "listaUsers";
+                        limpiarVentana();
+
+                        repaint();
+                        revalidate();
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
+                        contrasenaRegistrar.setText("");
+                        contrasenaConfirm.setText("");
+                    }
+                }
+            }
+
+        });
 
         JButton cancelar = new JButton("Cancelar");
         cancelar.setSize(150,30);
@@ -728,6 +831,14 @@ public class Ventana extends JFrame {//hola
         return miCuenta;
     }
 
+
+
+
+
+
+
+
+
     public JPanel crearCuenta(){
         anterior = actual;
         actual = "crearcuenta";
@@ -737,14 +848,14 @@ public class Ventana extends JFrame {//hola
         crearcuenta.setLocation(0, 0);
         crearcuenta.setLayout(null);
         crearcuenta.setBackground(Color.decode("#95E799"));
-        
+
         JLabel inicia = new JLabel("Crear cuenta",JLabel.CENTER);
         inicia.setFont(new Font("Arial",Font.BOLD,35));
         inicia.setSize(300,80);
         inicia.setLocation(135,10);
         inicia.setForeground(Color.decode("#005F04"));
         crearcuenta.add(inicia);
-        
+
         JLabel imagen = new JLabel();
         imagen.setSize(140,140);
         ImageIcon imag = new ImageIcon("cactus-create.png");
@@ -752,7 +863,7 @@ public class Ventana extends JFrame {//hola
         imagen.setIcon(icono);
         imagen.setLocation(210,67);
         crearcuenta.add(imagen);
-        
+
         JLabel imagen2 = new JLabel();
         imagen2.setSize(40,40);
         ImageIcon imag2 = new ImageIcon("cactus-logo.png");
@@ -808,14 +919,14 @@ public class Ventana extends JFrame {//hola
         contrasenaRegistrar.setSize(280,43);
         contrasenaRegistrar.setLocation(150,380);
         crearcuenta.add(contrasenaRegistrar);
-        
+
         JLabel passConfirm = new JLabel("Confirmar contraseña",JLabel.CENTER);
         passConfirm.setFont(new Font("Arial",Font.BOLD,15));
         passConfirm.setSize(260,80);
         passConfirm.setLocation(98,410);
         passConfirm.setForeground(Color.decode("#005F04"));
         crearcuenta.add(passConfirm);
-        
+
         JPasswordField contrasenaConfirmar = new JPasswordField();
         contrasenaConfirmar.setSize(280,43);
         contrasenaConfirmar.setLocation(150,460);
@@ -853,72 +964,72 @@ public class Ventana extends JFrame {//hola
             }
 
         });
-        
+
         accederRegistrar.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String name = nombreRegistrar.getText();
-				String apellido = apeRegistrar.getText();
-				String email = correoRegistrar.getText();
-				String pwd = (new String(contrasenaRegistrar.getPassword()));
-				String pwdCopy = (new String(contrasenaConfirmar.getPassword()));
-				FileWriter writer;
-				PrintWriter linea;
-				
-				if(name.length() == 0 || apellido.length() == 0 || email.length() == 0 || pwd.length() == 0 || pwdCopy.length() == 0) {
-					JOptionPane.showMessageDialog(null, "No has ingresado uno o más valores","Mal",JOptionPane.WARNING_MESSAGE);
-					nombreRegistrar.setText("");
-					apeRegistrar.setText("");
-					correoRegistrar.setText("");
-					contrasenaRegistrar.setText("");
-					contrasenaConfirmar.setText("");
-				}else {
-					if(pwd.equals(pwdCopy)) {
-						try {
-							writer = new FileWriter("src\\users.txt",true);
-							linea = new PrintWriter(writer);
-							
-							linea.println(name + "," + apellido + "," + email + "," + pwd);
-							linea.close();
-							writer.close();
-							
-							int op = JOptionPane.showConfirmDialog(null, "Creado exitosamente, ¿Desea crear otro usuario?", "Éxito",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-							
-							if(op == JOptionPane.YES_OPTION) {
-								nombreRegistrar.setText("");
-								apeRegistrar.setText("");
-								correoRegistrar.setText("");
-								contrasenaRegistrar.setText("");
-								contrasenaConfirmar.setText("");
-							}else {
-								anterior = actual;
-				                actual = "menu";
-				                limpiarVentana();
-				                JOptionPane.showMessageDialog(null, "Fue reedirigido al menú", "Usted no quiere crear otro usuario",JOptionPane.INFORMATION_MESSAGE);
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = nombreRegistrar.getText();
+                String apellido = apeRegistrar.getText();
+                String email = correoRegistrar.getText();
+                String pwd = (new String(contrasenaRegistrar.getPassword()));
+                String pwdCopy = (new String(contrasenaConfirmar.getPassword()));
+                FileWriter writer;
+                PrintWriter linea;
 
-				                repaint();
-				                revalidate();
-							}
-						}catch(IOException de){
-							de.printStackTrace();
-						}
-					}else {
-						JOptionPane.showMessageDialog(null, "Las contraseñas no han coincidido","Mal",JOptionPane.WARNING_MESSAGE);
-						contrasenaRegistrar.setText("");
-						contrasenaConfirmar.setText("");
-					}
-				}
-			}
-			
-		});
+                if(name.length() == 0 || apellido.length() == 0 || email.length() == 0 || pwd.length() == 0 || pwdCopy.length() == 0) {
+                    JOptionPane.showMessageDialog(null, "No has ingresado uno o más valores","Mal",JOptionPane.WARNING_MESSAGE);
+                    nombreRegistrar.setText("");
+                    apeRegistrar.setText("");
+                    correoRegistrar.setText("");
+                    contrasenaRegistrar.setText("");
+                    contrasenaConfirmar.setText("");
+                }else {
+                    if(pwd.equals(pwdCopy)) {
+                        try {
+                            writer = new FileWriter("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt",true);
+                            linea = new PrintWriter(writer);
+
+                            linea.println(name + "," + apellido + "," + email + "," + pwd);
+                            linea.close();
+                            writer.close();
+
+                            int op = JOptionPane.showConfirmDialog(null, "Creado exitosamente, ¿Desea crear otro usuario?", "Éxito",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+
+                            if(op == JOptionPane.YES_OPTION) {
+                                nombreRegistrar.setText("");
+                                apeRegistrar.setText("");
+                                correoRegistrar.setText("");
+                                contrasenaRegistrar.setText("");
+                                contrasenaConfirmar.setText("");
+                            }else {
+                                anterior = actual;
+                                actual = "menu";
+                                limpiarVentana();
+                                JOptionPane.showMessageDialog(null, "Fue reedirigido al menú", "Usted no quiere crear otro usuario",JOptionPane.INFORMATION_MESSAGE);
+
+                                repaint();
+                                revalidate();
+                            }
+                        }catch(IOException de){
+                            de.printStackTrace();
+                        }
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Las contraseñas no han coincidido","Mal",JOptionPane.WARNING_MESSAGE);
+                        contrasenaRegistrar.setText("");
+                        contrasenaConfirmar.setText("");
+                    }
+                }
+            }
+
+        });
         return crearcuenta;
     }
-    
+
     private static void eliminarLineaEnArchivo(int fila) {
         try {
             File file = new File("src\\users.txt");
-            
+
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String lineaActual;
             StringBuffer buffer = new StringBuffer();
@@ -955,7 +1066,7 @@ public class Ventana extends JFrame {//hola
         list.setSize(400,40);
         list.setForeground(Color.decode("#005F04"));
         listaUsuarios.add(list);
-        
+
         JLabel imagen = new JLabel();
         imagen.setSize(80,80);
         ImageIcon imag = new ImageIcon("cactus-table.png");
@@ -963,7 +1074,7 @@ public class Ventana extends JFrame {//hola
         imagen.setIcon(icono);
         imagen.setLocation(240,70);
         listaUsuarios.add(imagen);
-        
+
         JLabel imagen2 = new JLabel();
         imagen2.setSize(40,40);
         ImageIcon imag2 = new ImageIcon("cactus-logo.png");
@@ -1003,27 +1114,27 @@ public class Ventana extends JFrame {//hola
         tabla.setSize(260,200);
         tabla.setVisible(false);
         listaUsuarios.add(tabla);
-        
+
         tabla.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 int filaSeleccionada = tabla.getSelectedRow();
                 int columnaSeleccionada = tabla.getSelectedColumn();
-                if (columnaSeleccionada == 4 ) { 
-                	String emailLogueado = (String) tabla.getValueAt(filaSeleccionada, 2);
-                	System.out.println(emailLogueado);
-                	if(emailLogueado.equals(email)) {
-                		JOptionPane.showMessageDialog(null, "No, no puedes borrarte a ti mismo...", "Así te quería agarrar", JOptionPane.OK_OPTION);
-                	}else {
-                		int opcion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas eliminar esta fila?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+                if (columnaSeleccionada == 4 ) {
+                    String emailLogueado = (String) tabla.getValueAt(filaSeleccionada, 2);
+                    System.out.println(emailLogueado);
+                    if(emailLogueado.equals(email)) {
+                        JOptionPane.showMessageDialog(null, "No, no puedes borrarte a ti mismo...", "Así te quería agarrar", JOptionPane.OK_OPTION);
+                    }else {
+                        int opcion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas eliminar esta fila?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
                         if (opcion == JOptionPane.YES_OPTION) {
                             DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
                             modelo.removeRow(filaSeleccionada);
                             eliminarLineaEnArchivo(filaSeleccionada);
-                      }
-                }	}
+                        }
+                    }	}
             }
         });
-        
+
         JScrollPane scrollPane = new JScrollPane(tabla);
         scrollPane.setLocation(85,290);
         scrollPane.setSize(400,300);
@@ -1031,13 +1142,13 @@ public class Ventana extends JFrame {//hola
         listaUsuarios.add(scrollPane);
 
 
-            seleccionar.setSize(400,40);
-            seleccionar.setLocation(85,160);
-            listaUsuarios.add(seleccionar);
-            seleccionar.removeAllItems();
+        seleccionar.setSize(400,40);
+        seleccionar.setLocation(85,160);
+        listaUsuarios.add(seleccionar);
+        seleccionar.removeAllItems();
 
 
-        File file = new File("src\\users.txt");
+        File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String linea;
             while ((linea = reader.readLine()) != null) {
@@ -1053,80 +1164,80 @@ public class Ventana extends JFrame {//hola
                 String seleccionado = (String) seleccionar.getSelectedItem();
                 editarUser.setEnabled(true);
                 editarUser.setText("Editar " + seleccionado);
-                
-                }
-                
+
+            }
+
 
         });
 
 
         editarUser.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String seleccionado = (String) seleccionar.getSelectedItem();
-				if(seleccionado.equals(email)) {
-					JOptionPane.showMessageDialog(null, "En 'Mi cuenta' puedes editar tu información", "No puedes editarte a ti mismo en esta ventana", JOptionPane.OK_OPTION);
-                	int op = JOptionPane.showConfirmDialog(null, "¿Deseas que te reedirigamos a 'Mi cuenta'?", "Reedirección", JOptionPane.YES_NO_OPTION);
-                	if(op == JOptionPane.YES_OPTION) {
-                		anterior = actual;
-        				actual = "micuenta";
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String seleccionado = (String) seleccionar.getSelectedItem();
+                if(seleccionado.equals(email)) {
+                    JOptionPane.showMessageDialog(null, "En 'Mi cuenta' puedes editar tu información", "No puedes editarte a ti mismo en esta ventana", JOptionPane.OK_OPTION);
+                    int op = JOptionPane.showConfirmDialog(null, "¿Deseas que te reedirigamos a 'Mi cuenta'?", "Reedirección", JOptionPane.YES_NO_OPTION);
+                    if(op == JOptionPane.YES_OPTION) {
+                        anterior = actual;
+                        actual = "micuenta";
                         limpiarVentana();
-                        
+
                         repaint();
                         revalidate();
-                	}
-				}else {
-					anterior = actual;
-					actual = "editarCuenta";
-	                limpiarVentana();
-	                
-	                repaint();
-	                revalidate();
-				}
-				
-			}
-        	
+                    }
+                }else {
+                    anterior = actual;
+                    actual = "editarCuenta";
+                    limpiarVentana();
+
+                    repaint();
+                    revalidate();
+                }
+
+            }
+
         });
 
-		abrirTabla.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				File file = new File("src\\users.txt");
-				BufferedReader bufer;
-	
-				try {
-					bufer = new BufferedReader(new FileReader(file));
-					String[] columnas = {"Nombre", "Apellidos", "Correo", "Contraseña", "Acción"};
-						
-					DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
-					modelo.setColumnIdentifiers(columnas);
-						
-					modelo.setRowCount(0);
-					
-					TableColumnModel columnModel = tabla.getColumnModel();
-				    columnModel.getColumn(columnModel.getColumnCount() - 1).setCellRenderer(new ButtonRenderer());
-						
-					Object[] datosEnLinea = bufer.lines().toArray();
-						
-					for(int i = 0; i<datosEnLinea.length; i++) {
-						String linea = datosEnLinea[i].toString().trim();
-						String [] data = linea.split(",");
-						modelo.addRow(data);
-						
-					}	
-					tabla.setVisible(true);
-					scrollPane.setVisible(true);
-					repaint();
-					revalidate();
-						
-				}catch (Exception er) {
-					er.printStackTrace();
-				}
-				
-			}
-			
-		});
+        abrirTabla.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                File file = new File("C:\\Users\\Public\\Documents\\Tareas\\Examen-U1\\src\\users.txt");
+                BufferedReader bufer;
+
+                try {
+                    bufer = new BufferedReader(new FileReader(file));
+                    String[] columnas = {"Nombre", "Apellidos", "Correo", "Contraseña", "Acción"};
+
+                    DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+                    modelo.setColumnIdentifiers(columnas);
+
+                    modelo.setRowCount(0);
+
+                    TableColumnModel columnModel = tabla.getColumnModel();
+                    columnModel.getColumn(columnModel.getColumnCount() - 1).setCellRenderer(new ButtonRenderer());
+
+                    Object[] datosEnLinea = bufer.lines().toArray();
+
+                    for(int i = 0; i<datosEnLinea.length; i++) {
+                        String linea = datosEnLinea[i].toString().trim();
+                        String [] data = linea.split(",");
+                        modelo.addRow(data);
+
+                    }
+                    tabla.setVisible(true);
+                    scrollPane.setVisible(true);
+                    repaint();
+                    revalidate();
+
+                }catch (Exception er) {
+                    er.printStackTrace();
+                }
+
+            }
+
+        });
 
         return listaUsuarios;
 
@@ -1148,7 +1259,7 @@ public class Ventana extends JFrame {//hola
         comocrea.setSize(400,40);
         comocrea.setForeground(Color.decode("#005F04"));
         ayuda.add(comocrea);
-        
+
         JLabel imagen2 = new JLabel();
         imagen2.setSize(90,90);
         ImageIcon imag2 = new ImageIcon("cactus-logo.png");
@@ -1184,20 +1295,20 @@ public class Ventana extends JFrame {//hola
         crear.setBorder(null);
         crear.setFont(new Font("Arial", Font.BOLD, 20));
         ayuda.add(crear);
-        
+
         crear.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				anterior = actual;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                anterior = actual;
                 actual = "crearcuenta";
                 limpiarVentana();
 
                 repaint();
                 revalidate();
-				
-			}
-        	
+
+            }
+
         });
 
         return ayuda;
