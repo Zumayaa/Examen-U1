@@ -564,8 +564,12 @@ public class Ventana extends JFrame {//hola
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				if(correoRegistrar.getText().equals(email)) {
+					JOptionPane.showMessageDialog(null, "El correo es igual", "Error", JOptionPane.OK_OPTION);
+					correoRegistrar.setText("");
+				}else {
+					
+				}
 				
 			}
 			
